@@ -37,6 +37,7 @@ $APPLICATION->SetTitle("Батарейки");
 		</p>
 	</div>
 </div>
+</div>
 <?$APPLICATION->IncludeComponent("bitrix:search.form", "main_search", Array(
 	"COMPONENT_TEMPLATE" => ".default",
 		"PAGE" => "#SITE_DIR#search.php",	// Страница выдачи результатов поиска (доступен макрос #SITE_DIR#)
