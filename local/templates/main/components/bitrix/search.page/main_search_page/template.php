@@ -11,38 +11,17 @@
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
 ?>
+<?php var_dump($arResult["ERROR_CODE"]);?>
 <div class="search-page">
-<form action="" method="get">
-<?if($arParams["USE_SUGGEST"] === "Y"):
-	if(mb_strlen($arResult["REQUEST"]["~QUERY"]) && is_object($arResult["NAV_RESULT"]))
-	{
-		$arResult["FILTER_MD5"] = $arResult["NAV_RESULT"]->GetFilterMD5();
-		$obSearchSuggest = new CSearchSuggest($arResult["FILTER_MD5"], $arResult["REQUEST"]["~QUERY"]);
-		$obSearchSuggest->SetResultCount($arResult["NAV_RESULT"]->NavRecordCount);
-	}
-	?>
-<!--	--><?//$APPLICATION->IncludeComponent(
-//		"bitrix:search.suggest.input",
-//		"",
-//		array(
-//			"NAME" => "q",
-//			"VALUE" => $arResult["REQUEST"]["~QUERY"],
-//			"INPUT_SIZE" => 40,
-//			"DROPDOWN_SIZE" => 10,
-//			"FILTER_MD5" => $arResult["FILTER_MD5"],
-//		),
-//		$component, array("HIDE_ICONS" => "Y")
-//	);?>
-<?else:?>
-	<input type="text" name="q" value="<?=$arResult["REQUEST"]["QUERY"]?>" size="40" />
-<?endif;?>
-
-	&nbsp;<input type="submit" value="<?=GetMessage("SEARCH_GO")?>" />
-<!--	<input type="hidden" name="how" value="--><?//echo $arResult["REQUEST"]["HOW"]=="d"? "d": "r"?><!--" />-->
-</form>
-
-
-<?//if($arResult["REQUEST"]["QUERY"] === false && $arResult["REQUEST"]["TAGS"] === false):?>
+    <h1>Результат поиска</h1>
+    <div class="gray-bg">
+        <div class="container">
+            <form class="search clearfix" action="" method="get">
+                <input class="search__txt" name="q" value="" placeholder="Поиск по названию, артикулу, EAN " type="search">
+                <button class="search__submit" name="s" type="submit"><span>Найти</span></button>
+            </form>
+        </div>
+    </div>
 <?if($arResult["ERROR_CODE"]!=0):?>
 	<p><?=GetMessage("SEARCH_ERROR")?></p>
 	<?ShowError($arResult["ERROR_TEXT"]);?>
@@ -73,8 +52,7 @@
 		</tr>
 	</table>
 <?elseif(count($arResult["SEARCH"])>0):?>
-	<?if($arParams["DISPLAY_TOP_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
-	<br /><hr />
+
 	<?foreach($arResult["SEARCH"] as $arItem):?>
 		<a href="<?echo $arItem["URL"]?>"><?echo $arItem["TITLE_FORMATED"]?></a>
 		<p><?echo $arItem["BODY_FORMATED"]?></p>
@@ -85,14 +63,13 @@
 		?><hr />
 	<?endforeach;?>
 	<?if($arParams["DISPLAY_BOTTOM_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
-	<br />
-	<p>
-	<?if($arResult["REQUEST"]["HOW"]=="d"):?>
-		<a href="<?=$arResult["URL"]?>&amp;how=r<?echo $arResult["REQUEST"]["FROM"]? '&amp;from='.$arResult["REQUEST"]["FROM"]: ''?><?echo $arResult["REQUEST"]["TO"]? '&amp;to='.$arResult["REQUEST"]["TO"]: ''?>"><?=GetMessage("SEARCH_SORT_BY_RANK")?></a>&nbsp;|&nbsp;<b><?=GetMessage("SEARCH_SORTED_BY_DATE")?></b>
-	<?else:?>
-		<b><?=GetMessage("SEARCH_SORTED_BY_RANK")?></b>&nbsp;|&nbsp;<a href="<?=$arResult["URL"]?>&amp;how=d<?echo $arResult["REQUEST"]["FROM"]? '&amp;from='.$arResult["REQUEST"]["FROM"]: ''?><?echo $arResult["REQUEST"]["TO"]? '&amp;to='.$arResult["REQUEST"]["TO"]: ''?>"><?=GetMessage("SEARCH_SORT_BY_DATE")?></a>
-	<?endif;?>
-	</p>
+<!--	<p>-->
+<!--	--><?//if($arResult["REQUEST"]["HOW"]=="d"):?>
+<!--		<a href="--><?php //=$arResult["URL"]?><!--&amp;how=r--><?//echo $arResult["REQUEST"]["FROM"]? '&amp;from='.$arResult["REQUEST"]["FROM"]: ''?><!----><?//echo $arResult["REQUEST"]["TO"]? '&amp;to='.$arResult["REQUEST"]["TO"]: ''?><!--">--><?php //=GetMessage("SEARCH_SORT_BY_RANK")?><!--</a>&nbsp;|&nbsp;<b>--><?php //=GetMessage("SEARCH_SORTED_BY_DATE")?><!--</b>-->
+<!--	--><?//else:?>
+<!--		<b>--><?php //=GetMessage("SEARCH_SORTED_BY_RANK")?><!--</b>&nbsp;|&nbsp;<a href="--><?php //=$arResult["URL"]?><!--&amp;how=d--><?//echo $arResult["REQUEST"]["FROM"]? '&amp;from='.$arResult["REQUEST"]["FROM"]: ''?><!----><?//echo $arResult["REQUEST"]["TO"]? '&amp;to='.$arResult["REQUEST"]["TO"]: ''?><!--">--><?php //=GetMessage("SEARCH_SORT_BY_DATE")?><!--</a>-->
+<!--	--><?//endif;?>
+<!--	</p>-->
 <?else:?>
 	<?ShowNote(GetMessage("SEARCH_NOTHING_TO_FOUND"));?>
 <?endif;?>
