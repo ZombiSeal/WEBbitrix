@@ -6,7 +6,6 @@ $MESS["CT_BCE_CATALOG_COMPARE"] = "Сравнить";
 $MESS["CT_BCE_CATALOG_NOT_AVAILABLE"] = "нет на складе";
 $MESS["CT_BCE_CATALOG_NOT_AVAILABLE_SERVICE"] = "Недоступно";
 $MESS["CT_BCE_CATALOG_ECONOMY_INFO2"] = "Скидка #ECONOMY#";
-$MESS["CT_BCE_CATALOG_DESCRIPTION"] = "Описание";
 $MESS["CT_BCE_CATALOG_PROPERTIES"] = "Характеристики";
 $MESS["CT_BCE_CATALOG_COMMENTARY"] = "Комментарии";
 $MESS["CT_BCE_CATALOG_TITLE_ERROR"] = "Ошибка";
@@ -36,3 +35,8 @@ $MESS["CT_BCE_CATALOG_RANGE_MORE"] = "и более";
 $MESS["CT_BCE_CATALOG_RATIO_PRICE"] = "цена за #RATIO#";
 $MESS["CT_BCE_CATALOG_GIFT_BLOCK_TITLE_DEFAULT"] = "Выберите один из подарков к этому товару";
 $MESS["CT_BCE_CATALOG_GIFTS_MAIN_BLOCK_TITLE_DEFAULT"] = "Выберите один из товаров, чтобы получить подарок";
+
+$MESS["DESCRIPTION"] = "Описание товара";
+$MESS["SHORT_DESCRIPTION"] = "Краткое описание";
+$MESS["PRICE"] = "Цены";
+$MESS["PROPERTIES"] = "Характеристики товара";
