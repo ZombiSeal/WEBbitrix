@@ -14,7 +14,7 @@
 <?php
 //require "result_modifier.php";
 //echo "<pre>";
-//var_dump($arResult["SEARCH"]);
+//var_dump($arResult);
 //echo "<pre>";
 //?>
     <h1>Результат поиска</h1>
@@ -95,14 +95,14 @@
                         </div>
 
                     <?endforeach;?>
+            </div>
 
                     <?if($arParams["DISPLAY_BOTTOM_PAGER"] != "N") echo $arResult["NAV_STRING"]?>
 
                 <?else:?>
                     <?ShowNote(GetMessage("SEARCH_NOTHING_TO_FOUND"));?>
                 <?endif;?>
-            </div>
-        </div>
     </div>
 </div>
+
 

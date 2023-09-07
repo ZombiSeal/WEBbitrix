@@ -1406,3 +1406,27 @@ html, body, .bd-site { height: 100%; }
 .mobile-filter-trigger,
 .mobile-aside__contact {display: none;}
 /* новый слайдер */
+
+.pagination {
+	display: flex;
+	width: max-content;
+	margin: 0 auto;
+}
+
+.pagination__link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	margin: 0 10px;
+	border: 1px rgba(215, 41, 34, 0.75) solid;
+	border-radius: 10px;
+	color: black;
+}
+
+.pagination__link:hover,
+.pagination__link_active {
+	color: #fff;
+	background: rgba(215, 41, 34, 0.75);
+}
