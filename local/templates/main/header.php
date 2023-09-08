@@ -25,6 +25,7 @@ use Bitrix\Main\Page\Asset;
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick.css");
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick-theme.css");
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/fonts.css");
+        Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
         Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css");
 
     ?>

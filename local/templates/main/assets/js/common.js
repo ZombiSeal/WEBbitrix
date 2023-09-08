@@ -100,7 +100,7 @@ function SliderMinMax(selector,min,max,step,range){
 SliderMinMax('.factory',0.75,4,0.05,true);
 
 // Спойлер для списков фильтра
-var maxLi = 10, text = ["Скрыть", "Показать еще"];
+var maxLi = 3, text = ["Скрыть", "Показать еще"];
 $("ul.checkbox").each(function() {
     var li = $(this).find("li");
     if (li.length > maxLi) {

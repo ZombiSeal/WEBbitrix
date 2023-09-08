@@ -135,6 +135,5 @@ use Bitrix\Main\Page\Asset;
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jquery.ui.touch-punch.min.js");
     Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/common.js");
 ?>
-
 </body>
 </html>
