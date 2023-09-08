@@ -1,57 +1,7 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Батарейки");
-?><div class="main">
-    <div class="container">
-        <!-- Хлебные крошки -->
-        <ul class="breadcrums">
-            <? $APPLICATION->IncludeComponent(
-                "bitrix:breadcrumb",
-                "",
-                array(
-                    "PATH" => "",
-                    "SITE_ID" => "s1",
-                    "START_FROM" => "0"
-                )
-            ); ?>
-        </ul>
-        <h1>
-            <? $APPLICATION->IncludeComponent(
-                "bitrix:main.include",
-                "",
-                array(
-                    "AREA_FILE_SHOW" => "page",
-                    "AREA_FILE_SUFFIX" => "title",
-                    "EDIT_TEMPLATE" => ""
-                )
-            ); ?> </h1>
-        <div class="catalog-page">
-            <div class="main__content single-article width-80 catalog-prew">
-                <p>
-                    <? $APPLICATION->IncludeComponent(
-                        "bitrix:main.include",
-                        "",
-                        array(
-                            "AREA_FILE_SHOW" => "page",
-                            "AREA_FILE_SUFFIX" => "description1",
-                            "EDIT_TEMPLATE" => ""
-                        )
-                    ); ?>
-                </p>
-                <p>
-                    <? $APPLICATION->IncludeComponent(
-                        "bitrix:main.include",
-                        "",
-                        array(
-                            "AREA_FILE_SHOW" => "page",
-                            "AREA_FILE_SUFFIX" => "description2",
-                            "EDIT_TEMPLATE" => ""
-                        )
-                    ); ?>
-                </p>
-            </div>
-        </div>
-    </div>
+?>
 <? $APPLICATION->IncludeComponent(
     "bitrix:search.form",
     "main_search",

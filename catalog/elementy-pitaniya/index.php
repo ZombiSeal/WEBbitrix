@@ -1,65 +1,15 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Батарейки");
-?><div class="main">
-	<div class="container">
-		 <!-- Хлебные крошки -->
-		<ul class="breadcrums">
-			 <?$APPLICATION->IncludeComponent(
-	"bitrix:breadcrumb",
-	"",
-	Array(
-		"PATH" => "",
-		"SITE_ID" => "s1",
-		"START_FROM" => "0"
-	)
-);?>
-		</ul>
-		<h1>
-		<?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
-		"AREA_FILE_SHOW" => "page",
-		"AREA_FILE_SUFFIX" => "title",
-		"EDIT_TEMPLATE" => ""
-	)
-);?> </h1>
-		<div class="catalog-page">
-			<div class="main__content single-article width-80 catalog-prew">
-				<p>
-					 <?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
-		"AREA_FILE_SHOW" => "page",
-		"AREA_FILE_SUFFIX" => "description1",
-		"EDIT_TEMPLATE" => ""
-	)
-);?>
-				</p>
-				<p>
-					 <?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
-		"AREA_FILE_SHOW" => "page",
-		"AREA_FILE_SUFFIX" => "description2",
-		"EDIT_TEMPLATE" => ""
-	)
-);?>
-				</p>
-			</div>
-		</div>
-	</div>
-	 <?$APPLICATION->IncludeComponent(
+?>
+<?$APPLICATION->IncludeComponent(
 	"bitrix:search.form",
 	"main_search",
 	Array(
 		"PAGE" => "#SITE_DIR#search.php",
 		"USE_SUGGEST" => "N"
 	)
-);?> <?$APPLICATION->IncludeComponent(
+);?><?$APPLICATION->IncludeComponent(
 	"bitrix:catalog",
 	"main_catalog",
 	Array(
@@ -67,8 +17,8 @@ $APPLICATION->SetTitle("Батарейки");
 		"ADD_ELEMENT_CHAIN" => "Y",
 		"ADD_PICT_PROP" => "-",
 		"ADD_PROPERTIES_TO_BASKET" => "N",
-		"ADD_SECTIONS_CHAIN" => "Y",
-		"AJAX_MODE" => "Y",
+		"ADD_SECTIONS_CHAIN" => "N",
+		"AJAX_MODE" => "N",
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"AJAX_OPTION_HISTORY" => "N",
 		"AJAX_OPTION_JUMP" => "N",
@@ -93,7 +43,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
 		"DETAIL_PRODUCT_PAY_BLOCK_ORDER" => "rating,price,priceRanges,quantityLimit,quantity,buttons",
-		"DETAIL_PROPERTY_CODE" => array("ARTICLE","MARK","STOCK_COUNT","PRICE","TYPE","VOLTAGE","STRUCTURE","COUNT","PRODUCER","PROVIDER",""),
+		"DETAIL_PROPERTY_CODE" => array("PRICE","ARTICLE","MARK","STOCK_COUNT","TYPE","VOLTAGE","STRUCTURE","COUNT","PRODUCER","PROVIDER",""),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DETAIL_SHOW_POPULAR" => "Y",
 		"DETAIL_SHOW_SLIDER" => "Y",
@@ -110,13 +60,13 @@ $APPLICATION->SetTitle("Батарейки");
 		"ELEMENT_SORT_FIELD2" => "id",
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_SORT_ORDER2" => "desc",
-		"FILTER_HIDE_ON_MOBILE" => "Y",
-		"FILTER_NAME" => "",
+		"FILTER_HIDE_ON_MOBILE" => "N",
+		"FILTER_NAME" => "filter",
 		"FILTER_VIEW_MODE" => "VERTICAL",
 		"IBLOCK_ID" => "5",
 		"IBLOCK_TYPE" => "catalog",
 		"INCLUDE_SUBSECTIONS" => "Y",
-		"INSTANT_RELOAD" => "Y",
+		"INSTANT_RELOAD" => "N",
 		"LABEL_PROP" => array(),
 		"LAZY_LOAD" => "N",
 		"LINE_ELEMENT_COUNT" => "3",
@@ -130,7 +80,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"LIST_META_KEYWORDS" => "-",
 		"LIST_PRODUCT_BLOCKS_ORDER" => "price,props,sku,quantityLimit,quantity,buttons",
 		"LIST_PRODUCT_ROW_VARIANTS" => "[{'VARIANT':'2','BIG_DATA':false}]",
-		"LIST_PROPERTY_CODE" => array("STOCK_COUNT","PRICE",""),
+		"LIST_PROPERTY_CODE" => array("PRICE","STOCK_COUNT",""),
 		"LIST_PROPERTY_CODE_MOBILE" => array(),
 		"LIST_SHOW_SLIDER" => "N",
 		"LIST_SLIDER_INTERVAL" => "3000",
@@ -175,7 +125,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"SECTION_TOP_DEPTH" => "2",
 		"SEF_FOLDER" => "/catalog/",
 		"SEF_MODE" => "Y",
-		"SEF_URL_TEMPLATES" => array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE#/#ELEMENT_CODE#/","section"=>"#SECTION_CODE#/","sections"=>"","smart_filter"=>"#SECTION_ID#/filter/#SMART_FILTER_PATH#/apply/"),
+		"SEF_URL_TEMPLATES" => Array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE#/#ELEMENT_CODE#/","section"=>"#SECTION_CODE#/","sections"=>"","smart_filter"=>"#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/"),
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
@@ -216,8 +166,6 @@ $APPLICATION->SetTitle("Батарейки");
 		"USE_MAIN_ELEMENT_SECTION" => "N",
 		"USE_PRICE_COUNT" => "N",
 		"USE_PRODUCT_QUANTITY" => "N",
-		"USE_STORE" => "N",
-		"VARIABLE_ALIASES" => array("compare"=>array("ACTION_CODE"=>"action",),)
+		"USE_STORE" => "N"
 	)
-);?>
-</div><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
+);?><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

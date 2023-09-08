@@ -1,16 +1,8 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Каталог");
-?><h1> </h1>
-<h1><?$APPLICATION->IncludeComponent(
-	"bitrix:main.include",
-	"",
-	Array(
-		"AREA_FILE_SHOW" => "page",
-		"AREA_FILE_SUFFIX" => "title",
-		"EDIT_TEMPLATE" => ""
-	)
-);?></h1>
+?>
+
 <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog.section.list",
 	"",
