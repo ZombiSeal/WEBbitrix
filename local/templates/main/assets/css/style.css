@@ -83,6 +83,7 @@ body {
 	padding-right: 15px;
 	padding-left: 15px;
 }
+
 .clearfix:before,
 .clearfix:after,
 .container:before,
@@ -1411,6 +1412,7 @@ html, body, .bd-site { height: 100%; }
 	display: flex;
 	width: max-content;
 	margin: 0 auto;
+	margin-bottom: 50px;
 }
 
 .pagination__link {
@@ -1420,7 +1422,7 @@ html, body, .bd-site { height: 100%; }
 	width: 40px;
 	height: 40px;
 	margin: 0 10px;
-	border: 1px #B22513; solid;
+	border: 1px #B22513 solid;
 	border-radius: 10px;
 	color: black;
 }

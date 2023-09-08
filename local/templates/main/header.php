@@ -233,20 +233,4 @@ use Bitrix\Main\Page\Asset;
                     </div>
                 </div>
             </header>
-            <div class="main">
-                <div class="container">
-                    <!-- Хлебные крошки -->
-                    <ul class="breadcrums">
-                        <?$APPLICATION->IncludeComponent(
-                            "bitrix:breadcrumb",
-                            "",
-                            Array(
-                                "PATH" => "",
-                                "SITE_ID" => "s1",
-                                "START_FROM" => "0"
-                            )
-                        );?>
-                        <!--                <li><a href="#" title="">Главная</a></li>-->
-                        <!--                <li><span>Элементы питания</span></li>-->
-                    </ul>
-                    <!----------------------------------------------------------------------------------->
+
