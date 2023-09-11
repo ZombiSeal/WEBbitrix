@@ -17,7 +17,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\ModuleManager;
 
 $this->setFrameMode(true);
-$this->addExternalCss('/bitrix/css/main/bootstrap.css');
+//$this->addExternalCss('/bitrix/css/main/bootstrap.css');
 
 ?>
 <?

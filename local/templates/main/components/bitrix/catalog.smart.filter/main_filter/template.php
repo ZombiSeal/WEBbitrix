@@ -21,11 +21,11 @@ $templateData = array(
     'TEMPLATE_CLASS' => 'bx-' . $arParams['TEMPLATE_THEME']
 );
 
-if (isset($templateData['TEMPLATE_THEME'])) {
-    $this->addExternalCss($templateData['TEMPLATE_THEME']);
-}
-$this->addExternalCss("/bitrix/css/main/bootstrap.css");
-$this->addExternalCss("/bitrix/css/main/font-awesome.css");
+//if (isset($templateData['TEMPLATE_THEME'])) {
+//    $this->addExternalCss($templateData['TEMPLATE_THEME']);
+//}
+//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
+//$this->addExternalCss("/bitrix/css/main/font-awesome.css");
 
 ?>
 <div class="width-25 aside mobile-filters">

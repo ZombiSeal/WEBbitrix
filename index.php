@@ -2,7 +2,6 @@
 $APPLICATION->SetTitle("Какой-то заголовок");
 //$USER->Authorize(1);
 ?>
-    <p>HELLO!!!!!</p>
-</div>
-</div>
+        <p>HELLO!!!!!</p>
+
 <?php require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

@@ -14,7 +14,10 @@ use Bitrix\Main\Page\Asset;
 <html lang="ru" class="lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!-->
 <head>
-    <meta charset="utf-8"/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="cmsmagazine" content="aa4cc816c3e233bc68ec4386b3eabcf3"/>
     <?php $APPLICATION->ShowHead(); ?>
 
     <title><?php $APPLICATION->ShowTitle(); ?></title>
@@ -28,7 +31,7 @@ use Bitrix\Main\Page\Asset;
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick-theme.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/fonts.css");
-    //        Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css");
 
     ?>
@@ -61,13 +64,15 @@ use Bitrix\Main\Page\Asset;
     </script>
 </head>
 <body>
-<?php
 
-?>
 <div id="panel">
     <?php $APPLICATION->ShowPanel(); ?>
 </div>
 <!-- -->
+<?php
+$arrUrl = explode('/', $APPLICATION->GetCurPage());
+?>
+
 <div class="bd-site">
     <div class="b-fixed-footer">
         <div class="b-footer-padding">
@@ -263,45 +268,47 @@ use Bitrix\Main\Page\Asset;
                         ); ?>
                     </ul>
 
-                    <h1>
-                        <?$APPLICATION->IncludeComponent(
-                            "bitrix:main.include",
-                            "",
-                            Array(
+
+                    <?php if (CSite::InDir('/catalog/') && count($arrUrl) === 4): ?>
+                        <h1>
+                            <? $APPLICATION->IncludeComponent("bitrix:main.include", "", array(
                                 "AREA_FILE_SHOW" => "page",
                                 "AREA_FILE_SUFFIX" => "title",
                                 "EDIT_TEMPLATE" => ""
-                            )
-                        );?>
-                    </h1>
-
-                    <?php if (CSite::InDir('/catalog/')):?>
-                    <div class="catalog-page">
-                        <div class="main__content single-article width-80 catalog-prew">
-                            <p>
-                                <?$APPLICATION->IncludeComponent(
-                                    "bitrix:main.include",
-                                    "",
-                                    Array(
+                            ),
+                                false,
+                                array(
+                                    "ACTIVE_COMPONENT" => "Y"
+                                )
+                            ); ?>
+                        </h1>
+                        <div class="catalog-page">
+                            <div class="main__content single-article width-80 catalog-prew">
+                                <p>
+                                    <? $APPLICATION->IncludeComponent("bitrix:main.include", "", array(
                                         "AREA_FILE_SHOW" => "page",
                                         "AREA_FILE_SUFFIX" => "description1",
                                         "EDIT_TEMPLATE" => ""
-                                    )
-                                );?>
-                            </p>
-                            <p>
-                                <?$APPLICATION->IncludeComponent(
-                                    "bitrix:main.include",
-                                    "",
-                                    Array(
-                                        "AREA_FILE_SHOW" => "page",
-                                        "AREA_FILE_SUFFIX" => "description2",
-                                        "EDIT_TEMPLATE" => ""
-                                    )
-                                );?>
-                            </p>
+                                    ),
+                                        false,
+                                        array(
+                                            "ACTIVE_COMPONENT" => "Y"
+                                        )
+                                    ); ?>
+                                </p>
+                                <p>
+                                    <? $APPLICATION->IncludeComponent(
+                                        "bitrix:main.include",
+                                        "",
+                                        array(
+                                            "AREA_FILE_SHOW" => "page",
+                                            "AREA_FILE_SUFFIX" => "description2",
+                                            "EDIT_TEMPLATE" => ""
+                                        )
+                                    ); ?>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <?php endif;?>
+                    <?php endif; ?>
                 </div>
 

@@ -18,6 +18,10 @@ use Bitrix\Catalog\ProductTable;
 $this->setFrameMode(true);
 $this->addExternalCss('/bitrix/css/main/bootstrap.css');
 
+//echo "<pre>";
+//var_dump($arResult);
+//echo "<pre>";
+
 ?>
 <div class="container">
     <div class="single-product">
@@ -27,10 +31,9 @@ $this->addExternalCss('/bitrix/css/main/bootstrap.css');
                     <!-- Слайдер миниатюр -->
                     <div class="tovar-picts__slider-wr">
                         <div class="slider-for">
-                            <?php
-                            if (!empty($arResult['MORE_PHOTO'])):
-                                foreach ($arResult['MORE_PHOTO'] as $PHOTO):
-                                    ?>
+                            <?php if (!empty($arResult['MORE_PHOTO'])): ?>
+                                <?php foreach ($arResult['MORE_PHOTO'] as $PHOTO):?>
+
                                     <div><a rel="example_group" href="<?= $PHOTO['SRC'] ?>" class="js-img-modal"
                                             title=""><img
                                                     src="<?= $PHOTO['SRC'] ?>" alt=""/></a></div>
