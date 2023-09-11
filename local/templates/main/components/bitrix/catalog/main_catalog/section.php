@@ -1,4 +1,4 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 /** @var array $arParams */
 /** @var array $arResult */
 /** @global CMain $APPLICATION */
@@ -9,12 +9,22 @@
 /** @var string $templateFile */
 /** @var string $templateFolder */
 /** @var string $componentPath */
+
 /** @var CBitrixComponent $component */
+
 use Bitrix\Main\Loader;
 use Bitrix\Main\ModuleManager;
 
-$this->setFrameMode(true);
-//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
+if (!isset($arParams['FILTER_VIEW_MODE']) || (string)$arParams['FILTER_VIEW_MODE'] == '')
+    $arParams['FILTER_VIEW_MODE'] = 'VERTICAL';
+$arParams['USE_FILTER'] = (isset($arParams['USE_FILTER']) && $arParams['USE_FILTER'] == 'Y' ? 'Y' : 'N');
+
+$isVerticalFilter = ('Y' == $arParams['USE_FILTER'] && $arParams["FILTER_VIEW_MODE"] == "VERTICAL");
+$isSidebar = ($arParams["SIDEBAR_SECTION_SHOW"] == "Y" && isset($arParams["SIDEBAR_PATH"]) && !empty($arParams["SIDEBAR_PATH"]));
+$isFilter = ($arParams['USE_FILTER'] == 'Y');
+
+$this->setFrameMode(true);//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
+
 
 $sortField = 'ID'; // поле сортировки по умолчанию
 $sortOrder = 'ASC'; // направление сортировки по умолчанию
@@ -23,86 +33,123 @@ if (
         $_GET["sort"] == "name" ||
         $_GET["sort"] == "catalog_PRICE_3" ||
         $_GET["sort"] == "property_PRODUCT_TYPE" ||
-        $_GET["sort"] == "timestamp_x")){
+        $_GET["sort"] == "timestamp_x")) {
     $sortField = $_GET["sort"];
     $sortOrder = $_GET["method"];
-}?>
+} ?>
 
 <div class="catalog-area container">
-<div class="catalog-area__header">
-    <div class="title">Подбор по параметрам</div>
-    <div class="sort mob-hidden">
-        <div class="label">Сначала:</div>
-        <ul class="sort__opt">
-            <li><a href="" title="">Дешёвые</a></li>
-            <li><a href="" title="">Дорогие</a></li>
-            <li class="selected"><a href="" title="">Все</a></li>
-        </ul>
+    <div class="catalog-area__header">
+        <div class="title">Подбор по параметрам</div>
+        <div class="sort mob-hidden">
+            <div class="label">Сначала:</div>
+            <ul class="sort__opt">
+                <li><a href="" title="">Дешёвые</a></li>
+                <li><a href="" title="">Дорогие</a></li>
+                <li class="selected"><a href="" title="">Все</a></li>
+            </ul>
+        </div>
+        <div class="mobile-filter-trigger"></div>
     </div>
-    <div class = "mobile-filter-trigger"></div>
-</div>
 
 
-<?
-$sectionListParams = array(
-    "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
-    "IBLOCK_ID" => $arParams["IBLOCK_ID"],
-    "SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
-    "SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
-    "CACHE_TYPE" => $arParams["CACHE_TYPE"],
-    "CACHE_TIME" => $arParams["CACHE_TIME"],
-    "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
-    "COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
-    "TOP_DEPTH" => $arParams["SECTION_TOP_DEPTH"],
-    "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-    "VIEW_MODE" => $arParams["SECTIONS_VIEW_MODE"],
-    "SHOW_PARENT_NAME" => $arParams["SECTIONS_SHOW_PARENT_NAME"],
-    "HIDE_SECTION_NAME" => (isset($arParams["SECTIONS_HIDE_SECTION_NAME"]) ? $arParams["SECTIONS_HIDE_SECTION_NAME"] : "N"),
-    "ADD_SECTIONS_CHAIN" => (isset($arParams["ADD_SECTIONS_CHAIN"]) ? $arParams["ADD_SECTIONS_CHAIN"] : '')
-);
-if ($sectionListParams["COUNT_ELEMENTS"] === "Y")
-{
-    $sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_ACTIVE";
-    if ($arParams["HIDE_NOT_AVAILABLE"] == "Y")
-    {
-        $sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_AVAILABLE";
-    }
-}
-unset($sectionListParams);
-
-
-$APPLICATION->IncludeComponent(
-    "bitrix:catalog.smart.filter",
-    "main_filter",
-    array(
+    <?
+    $sectionListParams = array(
         "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
         "IBLOCK_ID" => $arParams["IBLOCK_ID"],
-        "SECTION_ID" => $arCurSection['ID'],
-        "FILTER_NAME" => $arParams["FILTER_NAME"],
-        "PRICE_CODE" => $arParams["~PRICE_CODE"],
+        "SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
+        "SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
         "CACHE_TYPE" => $arParams["CACHE_TYPE"],
         "CACHE_TIME" => $arParams["CACHE_TIME"],
         "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
-        "SAVE_IN_SESSION" => "N",
-        "FILTER_VIEW_MODE" => $arParams["FILTER_VIEW_MODE"],
-        "XML_EXPORT" => "N",
-        "SECTION_TITLE" => "NAME",
-        "SECTION_DESCRIPTION" => "DESCRIPTION",
-        'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
-        "TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
-        'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
-        'CURRENCY_ID' => $arParams['CURRENCY_ID'],
-        "SEF_MODE" => $arParams["SEF_MODE"],
-        "SEF_RULE" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["smart_filter"],
-        "SMART_FILTER_PATH" => $arResult["VARIABLES"]["SMART_FILTER_PATH"],
-        "PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
-        "INSTANT_RELOAD" => $arParams["INSTANT_RELOAD"],
-    ),
-    $component,
-    array('HIDE_ICONS' => 'Y')
-);
+        "COUNT_ELEMENTS" => $arParams["SECTION_COUNT_ELEMENTS"],
+        "TOP_DEPTH" => $arParams["SECTION_TOP_DEPTH"],
+        "SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+        "VIEW_MODE" => $arParams["SECTIONS_VIEW_MODE"],
+        "SHOW_PARENT_NAME" => $arParams["SECTIONS_SHOW_PARENT_NAME"],
+        "HIDE_SECTION_NAME" => (isset($arParams["SECTIONS_HIDE_SECTION_NAME"]) ? $arParams["SECTIONS_HIDE_SECTION_NAME"] : "N"),
+        "ADD_SECTIONS_CHAIN" => (isset($arParams["ADD_SECTIONS_CHAIN"]) ? $arParams["ADD_SECTIONS_CHAIN"] : '')
+    );
+    if ($sectionListParams["COUNT_ELEMENTS"] === "Y") {
+        $sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_ACTIVE";
+        if ($arParams["HIDE_NOT_AVAILABLE"] == "Y") {
+            $sectionListParams["COUNT_ELEMENTS_FILTER"] = "CNT_AVAILABLE";
+        }
+    }
+    unset($sectionListParams);
 
 
+    if ($isFilter):
+        $arFilter = array(
+            "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+            "ACTIVE" => "Y",
+            "GLOBAL_ACTIVE" => "Y",
+        );
+        if (0 < intval($arResult["VARIABLES"]["SECTION_ID"]))
+            $arFilter["ID"] = $arResult["VARIABLES"]["SECTION_ID"];
+        elseif ('' != $arResult["VARIABLES"]["SECTION_CODE"])
+            $arFilter["=CODE"] = $arResult["VARIABLES"]["SECTION_CODE"];
+
+        $obCache = new CPHPCache();
+        if ($obCache->InitCache(36000, serialize($arFilter), "/iblock/catalog")) {
+            $arCurSection = $obCache->GetVars();
+        } elseif ($obCache->StartDataCache()) {
+            $arCurSection = array();
+            if (Loader::includeModule("iblock")) {
+                $dbRes = CIBlockSection::GetList(array(), $arFilter, false, array("ID"));
+
+                if (defined("BX_COMP_MANAGED_CACHE")) {
+                    global $CACHE_MANAGER;
+                    $CACHE_MANAGER->StartTagCache("/iblock/catalog");
+
+                    if ($arCurSection = $dbRes->Fetch())
+                        $CACHE_MANAGER->RegisterTag("iblock_id_" . $arParams["IBLOCK_ID"]);
+
+                    $CACHE_MANAGER->EndTagCache();
+                } else {
+                    if (!$arCurSection = $dbRes->Fetch())
+                        $arCurSection = array();
+                }
+            }
+            $obCache->EndDataCache($arCurSection);
+        }
+        if (!isset($arCurSection))
+            $arCurSection = array();
+        ?>
+        <?
+        $APPLICATION->IncludeComponent(
+            "bitrix:catalog.smart.filter",
+            "main_filter",
+            array(
+                "IBLOCK_TYPE" => $arParams["IBLOCK_TYPE"],
+                "IBLOCK_ID" => $arParams["IBLOCK_ID"],
+                "SECTION_ID" => $arCurSection['ID'],
+                "FILTER_NAME" => $arParams["FILTER_NAME"],
+                "PRICE_CODE" => $arParams["~PRICE_CODE"],
+                "CACHE_TYPE" => $arParams["CACHE_TYPE"],
+                "CACHE_TIME" => $arParams["CACHE_TIME"],
+                "CACHE_GROUPS" => $arParams["CACHE_GROUPS"],
+                "SAVE_IN_SESSION" => "N",
+                "FILTER_VIEW_MODE" => $arParams["FILTER_VIEW_MODE"],
+                "XML_EXPORT" => "N",
+                "SECTION_TITLE" => "NAME",
+                "SECTION_DESCRIPTION" => "DESCRIPTION",
+                'HIDE_NOT_AVAILABLE' => $arParams["HIDE_NOT_AVAILABLE"],
+                "TEMPLATE_THEME" => $arParams["TEMPLATE_THEME"],
+                'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
+                'CURRENCY_ID' => $arParams['CURRENCY_ID'],
+                "SEF_MODE" => $arParams["SEF_MODE"],
+                "SEF_RULE" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["smart_filter"],
+                "SMART_FILTER_PATH" => $arResult["VARIABLES"]["SMART_FILTER_PATH"],
+                "PAGER_PARAMS_NAME" => $arParams["PAGER_PARAMS_NAME"],
+                "INSTANT_RELOAD" => $arParams["INSTANT_RELOAD"],
+            ),
+            $component,
+            array('HIDE_ICONS' => 'Y')
+        );
+        ?>
+    <? endif ?>
+<?php
 $intSectionID = $APPLICATION->IncludeComponent(
     "bitrix:catalog.section",
     "main_section",
@@ -124,7 +171,7 @@ $intSectionID = $APPLICATION->IncludeComponent(
         "INCLUDE_SUBSECTIONS" => $arParams["INCLUDE_SUBSECTIONS"],
         "BASKET_URL" => $arParams["BASKET_URL"],
         "ACTION_VARIABLE" => $arParams["ACTION_VARIABLE"],
-        "PRODUCT_ID_VARIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
+        "PRODUCT_ID_VA RIABLE" => $arParams["PRODUCT_ID_VARIABLE"],
         "SECTION_ID_VARIABLE" => $arParams["SECTION_ID_VARIABLE"],
         "PRODUCT_QUANTITY_VARIABLE" => $arParams["PRODUCT_QUANTITY_VARIABLE"],
         "PRODUCT_PROPS_VARIABLE" => $arParams["PRODUCT_PROPS_VARIABLE"],
@@ -177,8 +224,8 @@ $intSectionID = $APPLICATION->IncludeComponent(
 
         "SECTION_ID" => $arResult["VARIABLES"]["SECTION_ID"],
         "SECTION_CODE" => $arResult["VARIABLES"]["SECTION_CODE"],
-        "SECTION_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["section"],
-        "DETAIL_URL" => $arResult["FOLDER"].$arResult["URL_TEMPLATES"]["element"],
+        "SECTION_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["section"],
+        "DETAIL_URL" => $arResult["FOLDER"] . $arResult["URL_TEMPLATES"]["element"],
         "USE_MAIN_ELEMENT_SECTION" => $arParams["USE_MAIN_ELEMENT_SECTION"],
         'CONVERT_CURRENCY' => $arParams['CONVERT_CURRENCY'],
         'CURRENCY_ID' => $arParams['CURRENCY_ID'],
@@ -225,7 +272,7 @@ $intSectionID = $APPLICATION->IncludeComponent(
         "ADD_SECTIONS_CHAIN" => "N",
         'ADD_TO_BASKET_ACTION' => $basketAction,
         'SHOW_CLOSE_POPUP' => isset($arParams['COMMON_SHOW_CLOSE_POPUP']) ? $arParams['COMMON_SHOW_CLOSE_POPUP'] : '',
-        'COMPARE_PATH' => $arResult['FOLDER'].$arResult['URL_TEMPLATES']['compare'],
+        'COMPARE_PATH' => $arResult['FOLDER'] . $arResult['URL_TEMPLATES']['compare'],
         'COMPARE_NAME' => $arParams['COMPARE_NAME'],
         'USE_COMPARE_LIST' => 'Y',
         'BACKGROUND_IMAGE' => (isset($arParams['SECTION_BACKGROUND_IMAGE']) ? $arParams['SECTION_BACKGROUND_IMAGE'] : ''),
@@ -238,5 +285,13 @@ $intSectionID = $APPLICATION->IncludeComponent(
 </div>
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
+
+//if ($isVerticalFilter) {
+//    include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_vertical.php");
+//} else {
+//    include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_horizontal.php");
+//}
+
 ?>
+
 

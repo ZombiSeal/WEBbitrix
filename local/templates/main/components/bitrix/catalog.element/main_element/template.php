@@ -16,7 +16,7 @@ use Bitrix\Catalog\ProductTable;
  */
 
 $this->setFrameMode(true);
-$this->addExternalCss('/bitrix/css/main/bootstrap.css');
+
 
 //echo "<pre>";
 //var_dump($arResult);
