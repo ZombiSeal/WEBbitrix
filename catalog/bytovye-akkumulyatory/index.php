@@ -1,9 +1,7 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Батарейки");
-?>
-
-<?$APPLICATION->IncludeComponent(
+?><?$APPLICATION->IncludeComponent(
 	"bitrix:search.form",
 	"main_search",
 	Array(
@@ -17,7 +15,7 @@ $APPLICATION->SetTitle("Батарейки");
 	Array(
 		"ACTION_VARIABLE" => "action",
 		"ADD_ELEMENT_CHAIN" => "Y",
-		"ADD_PICT_PROP" => "-",
+		"ADD_PICT_PROP" => "MORE_PHOTO",
 		"ADD_PROPERTIES_TO_BASKET" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
 		"AJAX_MODE" => "Y",
@@ -40,7 +38,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"DETAIL_DISPLAY_NAME" => "Y",
 		"DETAIL_DISPLAY_PREVIEW_TEXT_MODE" => "E",
 		"DETAIL_IMAGE_RESOLUTION" => "16by9",
-		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array(),
+		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array("MARK","TYPE","VOLTAGE","COUNT"),
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
@@ -127,7 +125,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"SECTION_TOP_DEPTH" => "2",
 		"SEF_FOLDER" => "/catalog/",
 		"SEF_MODE" => "Y",
-		"SEF_URL_TEMPLATES" => array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE#/#ELEMENT_CODE#/","section"=>"#SECTION_CODE#/","sections"=>"","smart_filter"=>"#SECTION_ID#/filter/#SMART_FILTER_PATH#/apply/"),
+		"SEF_URL_TEMPLATES" => Array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE#/#ELEMENT_CODE#/","section"=>"#SECTION_CODE#/","sections"=>"","smart_filter"=>"#SECTION_ID#/filter/#SMART_FILTER_PATH#/apply/"),
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
