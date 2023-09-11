@@ -17,7 +17,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"ADD_PICT_PROP" => "MORE_PHOTO",
 		"ADD_PROPERTIES_TO_BASKET" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
-		"AJAX_MODE" => "N",
+		"AJAX_MODE" => "Y",
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"AJAX_OPTION_HISTORY" => "Y",
 		"AJAX_OPTION_JUMP" => "N",

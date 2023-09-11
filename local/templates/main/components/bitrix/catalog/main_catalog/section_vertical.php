@@ -257,6 +257,7 @@ if ($isFilter || $isSidebar): ?>
 				);
 			}
 
+
 			$intSectionID = $APPLICATION->IncludeComponent(
 				"bitrix:catalog.section",
 				"",

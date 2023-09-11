@@ -30,7 +30,8 @@ $templateData = array(
 ?>
 <div class="width-25 aside mobile-filters">
 
-    <form name="<? echo $arResult["FILTER_NAME"] . "_form" ?>" action="<? echo $arResult["FORM_ACTION"] ?>" method="get">
+    <form name="<? echo $arResult["FILTER_NAME"] . "_form" ?>" action="<? echo $arResult["FORM_ACTION"] ?>"
+          method="get">
         <div class="aside__filter accordion">
             <div class="aside__filter__item btn-wr mob-hidden">
                 <a class="btn gray" href="#"><?= GetMessage("CT_BCSF_DEL_FILTER") ?></a> <!-- Сброс фильтра ???? -->
@@ -39,53 +40,56 @@ $templateData = array(
                 <input type="hidden" name="<? echo $arItem["CONTROL_NAME"] ?>" id="<? echo $arItem["CONTROL_ID"] ?>"
                        value="<? echo $arItem["HTML_VALUE"] ?>"/>
             <? endforeach; ?>
-                <?
-                //not prices
-                foreach ($arResult["ITEMS"] as $key => $arItem) {
-                    if (
-                        empty($arItem["VALUES"])
-                        || isset($arItem["PRICE"])
-                    )
-                        continue;
+            <?
+            //not prices
+            foreach ($arResult["ITEMS"] as $key => $arItem) {
+                if (
+                    empty($arItem["VALUES"])
+                    || isset($arItem["PRICE"])
+                )
+                    continue;
 
-                    if (
-                        $arItem["DISPLAY_TYPE"] === SectionPropertyTable::NUMBERS_WITH_SLIDER
-                        && ($arItem["VALUES"]["MAX"]["VALUE"] - $arItem["VALUES"]["MIN"]["VALUE"] <= 0)
-                    )
-                        continue;
-                    ?>
+                if (
+                    $arItem["DISPLAY_TYPE"] === SectionPropertyTable::NUMBERS_WITH_SLIDER
+                    && ($arItem["VALUES"]["MAX"]["VALUE"] - $arItem["VALUES"]["MIN"]["VALUE"] <= 0)
+                )
+                    continue;
+                ?>
 
-                    <div class="aside__filter__item">
-                        <div class="aside__filter__item__title accordion-item"><?=$arItem["NAME"]?></div>
-                        <div class="aside__filter__item__var data">
-                            <?
-                            $arCur = current($arItem["VALUES"]);
-                            switch ($arItem["DISPLAY_TYPE"]) {
+                <div class="aside__filter__item">
+                    <div class="aside__filter__item__title accordion-item"><?= $arItem["NAME"] ?></div>
+                    <div class="aside__filter__item__var data">
+                        <?
+                        $arCur = current($arItem["VALUES"]);
+                        switch ($arItem["DISPLAY_TYPE"]) {
                             case SectionPropertyTable::NUMBERS_WITH_SLIDER://NUMBERS_WITH_SLIDER
                                 ?>
                                 <div class="filter__attrs cr-filter__price">
                                     <dl class="b-filter-attr j-slider_range" from="20" to="1500">
                                         <dd class="filter-attr__value slider-input">
-                                            <div  class="filter__textlabel slider-input__left">
-                                                <span class = "dscr"><?= GetMessage("CT_BCSF_FILTER_FROM") ?></span>
+                                            <div class="filter__textlabel slider-input__left">
+                                                <span class="dscr"><?= GetMessage("CT_BCSF_FILTER_FROM") ?></span>
                                                 <span class="g-form__inputwrap">
-														<input class="g-form__text" name="filter[price][from]" value="85" maxlength="11" placeholder="20" type="text">
+														<input class="g-form__text" name="filter[price][from]"
+                                                               value="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>"
+                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>" type="text">
 													</span>
                                             </div>
                                             <div class="filter__textlabel slider-input__right">
-                                                <span class = "dscr"><?= GetMessage("CT_BCSF_FILTER_TO") ?></span>
+                                                <span class="dscr"><?= GetMessage("CT_BCSF_FILTER_TO") ?></span>
                                                 <span class="g-form__inputwrap">
-														<input class="g-form__text" name="filter[price][to]" maxlength="11" placeholder="1 500" type="text">
+														<input class="g-form__text" name="filter[price][to]"
+                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>" type="text">
 													</span>
                                             </div>
                                         </dd>
                                     </dl>
                                 </div>
 
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::NUMBERS://NUMBERS
-                            ?>
+                                ?>
                                 <div class="col-xs-6 bx-filter-parameters-box-container-block bx-left">
                                     <i class="bx-ft-sub"><?= GetMessage("CT_BCSF_FILTER_FROM") ?></i>
                                     <div class="bx-filter-input-container">
@@ -114,10 +118,10 @@ $templateData = array(
                                         />
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::CHECKBOXES_WITH_PICTURES://CHECKBOXES_WITH_PICTURES
-                            ?>
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="bx-filter-param-btn-inline">
                                         <? foreach ($arItem["VALUES"] as $val => $ar): ?>
@@ -150,10 +154,10 @@ $templateData = array(
                                         <? endforeach ?>
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::CHECKBOXES_WITH_PICTURES_AND_LABELS://CHECKBOXES_WITH_PICTURES_AND_LABELS
-                            ?>
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="bx-filter-param-btn-block">
                                         <? foreach ($arItem["VALUES"] as $val => $ar): ?>
@@ -192,11 +196,11 @@ $templateData = array(
                                         <? endforeach ?>
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::DROPDOWN://DROPDOWN
-                            $checkedItemExist = false;
-                            ?>
+                                $checkedItemExist = false;
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="bx-filter-select-container">
                                         <div class="bx-filter-select-block"
@@ -263,10 +267,10 @@ $templateData = array(
                                         </div>
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::DROPDOWN_WITH_PICTURES_AND_LABELS://DROPDOWN_WITH_PICTURES_AND_LABELS
-                            ?>
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="bx-filter-select-container">
                                         <div class="bx-filter-select-block"
@@ -352,10 +356,10 @@ $templateData = array(
                                         </div>
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::RADIO_BUTTONS://RADIO_BUTTONS
-                            ?>
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="radio">
                                         <label class="bx-filter-param-label"
@@ -396,10 +400,10 @@ $templateData = array(
                                         </div>
                                     <? endforeach; ?>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             case SectionPropertyTable::CALENDAR://CALENDAR
-                            ?>
+                                ?>
                                 <div class="col-xs-12">
                                     <div class="bx-filter-parameters-box-container-block">
                                         <div class="bx-filter-input-container bx-filter-calendar-container">
@@ -440,31 +444,33 @@ $templateData = array(
                                         </div>
                                     </div>
                                 </div>
-                            <?
-                            break;
+                                <?
+                                break;
                             default://CHECKBOXES
-                            ?>
+                                ?>
                                 <ul class="checkbox">
                                     <? foreach ($arItem["VALUES"] as $val => $ar): ?>
                                         <li>
                                             <label>
-                                                <input id="<? echo $ar["CONTROL_ID"] ?>" class="" name="<? echo $ar["CONTROL_NAME"] ?>" value="<? echo $ar["HTML_VALUE"] ?>" type="checkbox">
+                                                <input id="<? echo $ar["CONTROL_ID"] ?>" class=""
+                                                       name="<? echo $ar["CONTROL_NAME"] ?>"
+                                                       value="<? echo $ar["HTML_VALUE"] ?>" type="checkbox">
                                                 <span><?= $ar["VALUE"]; ?></span>
                                             </label>
                                         </li>
                                     <? endforeach; ?>
                                 </ul>
                             <?
-                            }
-                            ?>
-                        </div>
+                        }
+                        ?>
                     </div>
-                    <?
-                }
-                ?>
-                <div class="aside__filter__item btn-wr mob-hidden">
-                    <a class="btn gray" href="#"><?= GetMessage("CT_BCSF_DEL_FILTER") ?></a> <!-- Сброс фильтра ???? -->
                 </div>
+                <?
+            }
+            ?>
+            <div class="aside__filter__item btn-wr mob-hidden">
+                <a class="btn gray" href="#"><?= GetMessage("CT_BCSF_DEL_FILTER") ?></a> <!-- Сброс фильтра ???? -->
+            </div>
         </div>
     </form>
 </div>
