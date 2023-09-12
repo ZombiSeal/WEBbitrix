@@ -272,7 +272,7 @@ $(function() {
 				},
 				stop: function( event, ui ) {
 					//пользователь перестал двигать ползунок - уберем выделение с поля, в котором менялось зн-е
-					getAndSetFilterData();
+					// getAndSetFilterData();
 				}
 			});
 		});
