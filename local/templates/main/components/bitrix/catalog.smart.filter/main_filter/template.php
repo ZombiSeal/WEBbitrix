@@ -452,9 +452,13 @@ $templateData = array(
                                     <? foreach ($arItem["VALUES"] as $val => $ar): ?>
                                         <li>
                                             <label>
-                                                <input id="<? echo $ar["CONTROL_ID"] ?>" class=""
+                                                <input id="<? echo $ar["CONTROL_ID"] ?>"
                                                        name="<? echo $ar["CONTROL_NAME"] ?>"
-                                                       value="<? echo $ar["HTML_VALUE"] ?>" type="checkbox">
+                                                       value="<? echo $ar["HTML_VALUE"] ?>"
+                                                       type="checkbox"
+                                                       onclick="smartFilter.click(this)"
+                                                    <? echo $ar["CHECKED"]? 'checked="checked"': '' ?>
+                                                >
                                                 <span><?= $ar["VALUE"]; ?></span>
                                             </label>
                                         </li>
@@ -469,7 +473,20 @@ $templateData = array(
             }
             ?>
             <div class="aside__filter__item btn-wr mob-hidden">
-                <a class="btn gray" href="#"><?= GetMessage("CT_BCSF_DEL_FILTER") ?></a> <!-- Сброс фильтра ???? -->
+<!--                <a class="btn gray" href="#">--><?php //= GetMessage("CT_BCSF_DEL_FILTER") ?><!--</a> <!-- Сброс фильтра ???? -->
+                <input
+                        class="btn gray"
+                        type="submit"
+                        id="del_filter"
+                        name="del_filter"
+                        value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>"
+                />
+                <div class="bx-filter-popup-result <?if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"]?>" id="modef" <?if(!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"';?> style="display: inline-block;">
+                    <?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.(int)($arResult["ELEMENT_COUNT"] ?? 0).'</span>'));?>
+                    <span class="arrow"></span>
+                    <br/>
+                    <a href="<?echo $arResult["FILTER_URL"]?>" target=""><?echo GetMessage("CT_BCSF_FILTER_SHOW")?></a>
+                </div>
             </div>
         </div>
     </form>

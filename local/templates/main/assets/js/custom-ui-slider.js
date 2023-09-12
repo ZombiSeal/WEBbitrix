@@ -1,5 +1,6 @@
+
 $(function() {
-	
+
 	/*получить числовое значение из элемента*/
 	$.fn.getN = function(){
 		var $elem = $( this );
@@ -65,13 +66,13 @@ $(function() {
 		return value;
 	}
 
-	
-	
-	
 
-	
 
-	
+
+
+
+
+
 
 
 	/*фокус на поле ввода*/
@@ -81,11 +82,11 @@ $(function() {
 		$(this).blur(function(){$(this).closest('.g-form__inputwrap').removeClass('cr-state-focus');})
 	});
 	var counter = counter_limit = $("#j-filter__counter").html()-0;
-	
 
 
 
-	
+
+
 
 
 
@@ -107,7 +108,7 @@ var humanNumber = function(number, round, is_price){
 	}
 
     if( !number ) return '0';
-	
+
 	if(is_price){
 		number = parseFloat(number).toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ').replace('.', ',');
 	}
@@ -171,8 +172,8 @@ datetime.setTime(time);
 
 
 $(function() {
-		
-		
+
+
 		/*Слайдеры для заполнения полей*/
 		$( ".j-slider_range" ).each(function(){
 			var $inputs = $( this ).find("input"),
@@ -184,12 +185,12 @@ $(function() {
 			var step = 1;
 
 			var $slider = $('<div />').insertAfter( $(this) );
-			
+
 			$slider.slider({
 				create: function(ui){
-					
+
 					$slider.wrap($('<div class="ui-slider-container" />'));
-				
+
 					$from.bind('change', function(){
 						//В поле "от" было введено значение вручную
 						var value = $(this).getFlN();
@@ -246,14 +247,14 @@ $(function() {
 						}
 
 						$(this).val(humanNumber(value, 'up'));
-						
+
 						if(value < $from.getN()) value = $from.getN();
 						$slider.slider("values", 1, value); //меняем положение 2 ползунка
 					})
 					.getN();
-	
+
 					if(max) $slider.slider("values", 1, max);
-					
+
 				},
 				range: true,
 				step: step,//шаг, с которым двигается ползунок

@@ -7,11 +7,11 @@ function JCSmartFilter(ajaxURL, viewMode, params)
 	this.cache = [];
 	this.popups = [];
 	this.viewMode = viewMode;
-	if (params && params.SEF_SET_FILTER_URL)
-	{
-		this.bindUrlToButton('set_filter', params.SEF_SET_FILTER_URL);
-		this.sef = true;
-	}
+	// if (params && params.SEF_SET_FILTER_URL)
+	// {
+	// 	this.bindUrlToButton('set_filter', params.SEF_SET_FILTER_URL);
+	// 	this.sef = true;
+	// }
 	if (params && params.SEF_DEL_FILTER_URL)
 	{
 		this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
@@ -75,11 +75,11 @@ JCSmartFilter.prototype.reload = function(input)
 		}
 		else
 		{
-			if (this.sef)
-			{
-				var set_filter = BX('set_filter');
-				set_filter.disabled = true;
-			}
+			// if (this.sef)
+			// {
+			// 	var set_filter = BX('set_filter');
+			// 	set_filter.disabled = true;
+			// }
 
 			this.curFilterinput = input;
 			BX.ajax.loadJSON(
@@ -229,12 +229,12 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 		}
 	}
 
-	if (this.sef)
-	{
-		var set_filter = BX('set_filter');
-		set_filter.disabled = false;
-		set_filter.focus();
-	}
+	// if (this.sef)
+	// {
+	// 	var set_filter = BX('set_filter');
+	// 	set_filter.disabled = false;
+	// 	set_filter.focus();
+	// }
 
 	if (!fromCache && this.cacheKey !== '')
 	{

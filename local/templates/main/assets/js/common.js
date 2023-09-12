@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
 	// Слайдер брендов
   $('.js-brands-slider').owlCarousel({ 
 		stopOnHover : true,
