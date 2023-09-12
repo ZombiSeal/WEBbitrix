@@ -3,6 +3,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true) die();
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Catalog\ProductTable;
+use Bitrix\Main\Page\Asset;
 
 /**
  * @global CMain $APPLICATION
@@ -724,8 +725,16 @@ if ($showBottomPager)
 $signer = new \Bitrix\Main\Security\Sign\Signer;
 $signedTemplate = $signer->sign($templateName, 'catalog.section');
 $signedParams = $signer->sign(base64_encode(serialize($arResult['ORIGINAL_PARAMETERS'])), 'catalog.section');
+
+//Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/common.js");
 ?>
 <script>
+
+
+
+
+
+
 	BX.message({
 		BTN_MESSAGE_BASKET_REDIRECT: '<?=GetMessageJS('CT_BCS_CATALOG_BTN_MESSAGE_BASKET_REDIRECT')?>',
 		BASKET_URL: '<?=$arParams['BASKET_URL']?>',

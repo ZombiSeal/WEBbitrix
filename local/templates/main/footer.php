@@ -144,6 +144,7 @@ Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/custom-ui-slider.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jquery.ui.touch-punch.min.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/common.js");
+
 ?>
 </body>
 </html>
