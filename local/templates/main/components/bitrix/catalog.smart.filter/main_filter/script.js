@@ -21,6 +21,7 @@ function JCSmartFilter(ajaxURL, viewMode, params)
 
 JCSmartFilter.prototype.keyup = function(input)
 {
+
 	if(!!this.timer)
 	{
 		clearTimeout(this.timer);

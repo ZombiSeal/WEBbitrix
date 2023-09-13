@@ -255,6 +255,7 @@ $(function() {
 					if(max) $slider.slider("values", 1, max);
 
 				},
+
 				range: true,
 				step: step,//шаг, с которым двигается ползунок
 				min: min_value, //минимально возможное значение
@@ -271,9 +272,13 @@ $(function() {
 				},
 				stop: function( event, ui ) {
 					//пользователь перестал двигать ползунок - уберем выделение с поля, в котором менялось зн-е
-					getAndSetFilterData();
+					getAndSetFilterData($slider);
 				}
 			});
 		});
 
 });
+
+function getAndSetFilterData(slider) {
+	$('g-form__text').val(slider.slider("value"))
+}
