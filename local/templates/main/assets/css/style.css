@@ -1437,4 +1437,8 @@ html, body, .bd-site { height: 100%; }
 div[id^="wait_"] {
 	display:none !important;
 }
-
+.gray {
+	width: 100%;
+	background: transparent;
+	cursor: pointer;
+}

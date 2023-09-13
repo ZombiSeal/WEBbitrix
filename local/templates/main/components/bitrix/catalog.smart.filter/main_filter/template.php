@@ -34,7 +34,13 @@ $templateData = array(
           method="get">
         <div class="aside__filter accordion">
             <div class="aside__filter__item btn-wr mob-hidden">
-                <a class="btn gray" href="#"><?= GetMessage("CT_BCSF_DEL_FILTER") ?></a> <!-- Сброс фильтра ???? -->
+                <input
+                        class="btn gray"
+                        type="submit"
+                        id="del_filter"
+                        name="del_filter"
+                        value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>"
+                />
             </div>
             <? foreach ($arResult["HIDDEN"] as $arItem): ?>
                 <input type="hidden" name="<? echo $arItem["CONTROL_NAME"] ?>" id="<? echo $arItem["CONTROL_ID"] ?>"
@@ -72,14 +78,18 @@ $templateData = array(
                                                 <span class="g-form__inputwrap">
 														<input class="g-form__text" name="filter[price][from]"
                                                                value="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>"
-                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>" type="text">
+                                                               maxlength="11"
+                                                               placeholder="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>"
+                                                               type="text">
 													</span>
                                             </div>
                                             <div class="filter__textlabel slider-input__right">
                                                 <span class="dscr"><?= GetMessage("CT_BCSF_FILTER_TO") ?></span>
                                                 <span class="g-form__inputwrap">
 														<input class="g-form__text" name="filter[price][to]"
-                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>" type="text">
+                                                               maxlength="11"
+                                                               placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>"
+                                                               type="text">
 													</span>
                                             </div>
                                         </dd>
@@ -457,7 +467,7 @@ $templateData = array(
                                                        value="<? echo $ar["HTML_VALUE"] ?>"
                                                        type="checkbox"
                                                        onclick="smartFilter.click(this)"
-                                                    <? echo $ar["CHECKED"]? 'checked="checked"': '' ?>
+                                                    <? echo $ar["CHECKED"] ? 'checked="checked"' : '' ?>
                                                 >
                                                 <span><?= $ar["VALUE"]; ?></span>
                                             </label>
@@ -472,20 +482,23 @@ $templateData = array(
                 <?
             }
             ?>
-            <div class="aside__filter__item btn-wr mob-hidden">
-<!--                <a class="btn gray" href="#">--><?php //= GetMessage("CT_BCSF_DEL_FILTER") ?><!--</a> <!-- Сброс фильтра ???? -->
+            <div class="aside__filter__item btn-wr mob-hidden"><!--                <a class="btn gray" href="#">-->
+                <?php //= GetMessage("CT_BCSF_DEL_FILTER") ?><!--</a> <!-- Сброс фильтра ???? -->
                 <input
                         class="btn gray"
                         type="submit"
                         id="del_filter"
                         name="del_filter"
-                        value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>"
+                        value="<?= GetMessage("CT_BCSF_DEL_FILTER") ?>"
                 />
-                <div class="bx-filter-popup-result <?if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"]?>" id="modef" <?if(!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"';?> style="display: inline-block;">
-                    <?echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">'.(int)($arResult["ELEMENT_COUNT"] ?? 0).'</span>'));?>
+                <div class="bx-filter-popup-result <? if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
+                     id="modef" <? if (!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"'; ?>
+                     style="display: inline-block;">
+                    <? echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">' . (int)($arResult["ELEMENT_COUNT"] ?? 0) . '</span>')); ?>
                     <span class="arrow"></span>
                     <br/>
-                    <a href="<?echo $arResult["FILTER_URL"]?>" target=""><?echo GetMessage("CT_BCSF_FILTER_SHOW")?></a>
+                    <a href="<? echo $arResult["FILTER_URL"] ?>"
+                       target=""><? echo GetMessage("CT_BCSF_FILTER_SHOW") ?></a>
                 </div>
             </div>
         </div>
@@ -493,7 +506,5 @@ $templateData = array(
 </div>
 <script type="text/javascript">
     var smartFilter = new JCSmartFilter('<?echo CUtil::JSEscape($arResult["FORM_ACTION"])?>', '<?=CUtil::JSEscape($arParams["FILTER_VIEW_MODE"])?>', <?=CUtil::PhpToJSObject($arResult["JS_FILTER_PARAMS"])?>);
-    $.getScript("/local/templates/main/assets/js/common.js");
-    $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
 </script>
 

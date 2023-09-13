@@ -725,15 +725,8 @@ if ($showBottomPager)
 $signer = new \Bitrix\Main\Security\Sign\Signer;
 $signedTemplate = $signer->sign($templateName, 'catalog.section');
 $signedParams = $signer->sign(base64_encode(serialize($arResult['ORIGINAL_PARAMETERS'])), 'catalog.section');
-
-//Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/common.js");
 ?>
 <script>
-
-
-
-
-
 
 	BX.message({
 		BTN_MESSAGE_BASKET_REDIRECT: '<?=GetMessageJS('CT_BCS_CATALOG_BTN_MESSAGE_BASKET_REDIRECT')?>',
@@ -771,5 +764,7 @@ $signedParams = $signer->sign(base64_encode(serialize($arResult['ORIGINAL_PARAME
 		parameters: '<?=CUtil::JSEscape($signedParams)?>',
 		container: '<?=$containerName?>'
 	});
+
+
 </script>
 <!-- component-end -->

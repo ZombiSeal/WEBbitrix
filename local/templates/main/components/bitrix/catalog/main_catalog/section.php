@@ -283,15 +283,12 @@ $intSectionID = $APPLICATION->IncludeComponent(
 );
 ?>
 </div>
+<script>
+    $.getScript("/local/templates/main/assets/js/common.js");
+    $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
+</script>
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
-
-//if ($isVerticalFilter) {
-//    include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_vertical.php");
-//} else {
-//    include($_SERVER["DOCUMENT_ROOT"] . "/" . $this->GetFolder() . "/section_horizontal.php");
-//}
-
 ?>
 
 
