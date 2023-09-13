@@ -32,7 +32,7 @@ use \Bitrix\Main\Localization\Loc;
 ?>
 <div class="item">
     <a class="products-item" href="<?= $item['DETAIL_PAGE_URL'] ?>" title="<?= $productTitle ?>"
-       data-entity="image-wrapper">
+       data-entity="image-wrapper" onclick="">
         <div class="products-item__pic">
             <img src="<?= $item['PREVIEW_PICTURE']['SRC'] ?>" alt="">
         </div>

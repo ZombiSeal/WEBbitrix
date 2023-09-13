@@ -1,4 +1,4 @@
-$(window).load(function() {
+
 	// Слайдер брендов
   $('.js-brands-slider').owlCarousel({ 
 		stopOnHover : true,
@@ -10,74 +10,77 @@ $(window).load(function() {
 		itemsMobile : [479,1]
   });
 
-// Миниатюры товара
-$('.slider-for').slick({
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-  fade: true,
-  asNavFor: '.slider-nav'
-});
-$('.slider-nav').slick({
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  asNavFor: '.slider-for',
-  dots: true,
-	vertical: true,
-  centerMode: false,
-  focusOnSelect: true
-});
+$(window).load(function(){
+	// Миниатюры товара
+	$('.slider-for').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		fade: true,
+		asNavFor: '.slider-nav'
+	});
+	$('.slider-nav').slick({
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		asNavFor: '.slider-for',
+		dots: true,
+		vertical: true,
+		centerMode: false,
+		focusOnSelect: true
+	});
 
 //Кнопка "Наверх"
-if(document.documentElement.clientWidth <= 480) {
-	$("#back_top").hide();
-	$(function () {
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > 700) {
-				$('#back_top').fadeIn();
-			} else {
-				$('#back_top').fadeOut();
-			}
-		});
+	if(document.documentElement.clientWidth <= 480) {
+		$("#back_top").hide();
+		$(function () {
+			$(window).scroll(function () {
+				if ($(this).scrollTop() > 700) {
+					$('#back_top').fadeIn();
+				} else {
+					$('#back_top').fadeOut();
+				}
+			});
 			$('#back_top').click(function () {
+				$('body,html').animate({
+					scrollTop: 0
+				}, 600);
+				return false;
+			});
+		});
+	} else {
+		$('#back_top').click(function () {
 			$('body,html').animate({
 				scrollTop: 0
 			}, 600);
 			return false;
 		});
-	});
-} else {
-	$('#back_top').click(function () {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 600);
-		return false;
-	});
-}
+	}
 
 // Модальные окна
-$(".js-open-modal").fancybox({
-	wrapCSS: 'fb-modal-win',
-	padding : 0,
-	//width: 280,
-	//height: 662,
-	//fitToView: false,
-	//autoSize: false,
-	helpers: {
-		overlay: {
-			locked: false
+	$(".js-open-modal").fancybox({
+		wrapCSS: 'fb-modal-win',
+		padding : 0,
+		//width: 280,
+		//height: 662,
+		//fitToView: false,
+		//autoSize: false,
+		helpers: {
+			overlay: {
+				locked: false
+			}
 		}
-	}
-});
-$(".js-img-modal").fancybox({
-	wrapCSS: 'fb-modal-win',
-	padding : 30,
-	helpers: {
-		overlay: {
-			locked: false
+	});
+	$(".js-img-modal").fancybox({
+		wrapCSS: 'fb-modal-win',
+		padding : 30,
+		helpers: {
+			overlay: {
+				locked: false
+			}
 		}
-	}
-});
+	});
+
+})
 
 // Ползунки параметров
 function SliderMinMax(selector,min,max,step,range){
@@ -192,4 +195,3 @@ if(document.documentElement.clientWidth <= 480) {
 	catalogPrew();
 }
 
-});

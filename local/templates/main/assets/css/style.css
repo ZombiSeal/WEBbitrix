@@ -1433,3 +1433,8 @@ html, body, .bd-site { height: 100%; }
 	background: #B22513;;
 	text-decoration: none;
 }
+
+div[id^="wait_"] {
+	display:none !important;
+}
+

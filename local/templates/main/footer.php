@@ -141,7 +141,7 @@ Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/libs/fancybox/jquery.f
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/libs/jquery/jquery-ui-1.8.11.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/libs/easy-responsive-tabs-to-accordion/easyResponsiveTabs.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick.js");
-Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/custom-ui-slider.js");
+//Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/custom-ui-slider.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/jquery.ui.touch-punch.min.js");
 Asset::getInstance()->addJs(SITE_TEMPLATE_PATH . "/assets/js/common.js");
 

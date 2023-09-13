@@ -30,7 +30,7 @@ $templateData = array(
 ?>
 <div class="width-25 aside mobile-filters">
 
-    <form name="<? echo $arResult["FILTER_NAME"] . "_form" ?>" action="<? echo $arResult["FORM_ACTION"] ?>"
+    <form name="<? echo $arResult["FILTER_NAME"] . "_form" ?>" action=""
           method="get">
         <div class="aside__filter accordion">
             <div class="aside__filter__item btn-wr mob-hidden">
@@ -493,6 +493,7 @@ $templateData = array(
 </div>
 <script type="text/javascript">
     var smartFilter = new JCSmartFilter('<?echo CUtil::JSEscape($arResult["FORM_ACTION"])?>', '<?=CUtil::JSEscape($arParams["FILTER_VIEW_MODE"])?>', <?=CUtil::PhpToJSObject($arResult["JS_FILTER_PARAMS"])?>);
-
-
+    $.getScript("/local/templates/main/assets/js/common.js");
+    $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
 </script>
+
