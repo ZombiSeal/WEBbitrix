@@ -271,14 +271,13 @@ $(function() {
 					}
 				},
 				stop: function( event, ui ) {
+
+                    $('.g-form__text').keyup();
 					//пользователь перестал двигать ползунок - уберем выделение с поля, в котором менялось зн-е
-					getAndSetFilterData($slider);
+
 				}
 			});
 		});
 
 });
 
-function getAndSetFilterData(slider) {
-	$('g-form__text').val(slider.slider("value"))
-}

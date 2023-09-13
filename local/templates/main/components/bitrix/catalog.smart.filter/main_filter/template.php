@@ -97,7 +97,7 @@ $templateData = array(
                                                                placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>"
                                                                type="text"
                                                                value="<?= $arItem["VALUES"]["MAX"]["HTML_VALUE"] ?>"
-                                                               onkeyup="smartFilter.input(this)"
+                                                               onkeyup="smartFilter.keyup(this)"
                                                         >
 													</span>
                                             </div>
