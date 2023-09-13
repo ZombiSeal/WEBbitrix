@@ -70,25 +70,16 @@ $templateData = array(
                                             <div class="filter__textlabel slider-input__left">
                                                 <span class="dscr"><?= GetMessage("CT_BCSF_FILTER_FROM") ?></span>
                                                 <span class="g-form__inputwrap">
-														<input class="g-form__text"
-                                                               id="<?echo $arItem["VALUES"]["MIN"]["CONTROL_ID"]?>"
-                                                               name="<?echo $arItem["VALUES"]["MIN"]["CONTROL_NAME"]?>"
+														<input class="g-form__text" name="filter[price][from]"
                                                                value="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>"
-                                                               maxlength="11"
-                                                               placeholder="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>"
-                                                               onkeyup="smartFilter.keyup(this)"type="text">
+                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MIN"]["VALUE"] ?>" type="text">
 													</span>
                                             </div>
                                             <div class="filter__textlabel slider-input__right">
                                                 <span class="dscr"><?= GetMessage("CT_BCSF_FILTER_TO") ?></span>
                                                 <span class="g-form__inputwrap">
-														<input class="g-form__text"
-                                                               id="<?echo $arItem["VALUES"]["MAX"]["CONTROL_ID"]?>"
-                                                               name="<?echo $arItem["VALUES"]["MAX"]["CONTROL_NAME"]?>"
-                                                               maxlength="11"
-                                                               placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>"
-                                                               type="text"
-                                                               onkeyup="smartFilter.keyup(this)">
+														<input class="g-form__text" name="filter[price][to]"
+                                                               maxlength="11" placeholder="<?= $arItem["VALUES"]["MAX"]["VALUE"] ?>" type="text">
 													</span>
                                             </div>
                                         </dd>
