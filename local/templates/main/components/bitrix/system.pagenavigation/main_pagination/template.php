@@ -18,8 +18,6 @@ if(!$arResult["NavShowAlways"])
 		return;
 }
 
-$strNavQueryString = ($arResult["NavQueryString"] != "" ? $arResult["NavQueryString"]."&amp;" : "");
-$strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["NavQueryString"] : "");
 ?>
 
 
@@ -29,14 +27,14 @@ $strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["Nav
     <?if ($arResult["NavPageNomer"] > 1):?>
 
         <?if($arResult["bSavePage"]):?>
-            <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=1"><?=GetMessage("nav_begin")?></a>
-            <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
+            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=1"><?=GetMessage("nav_begin")?></a>
+            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
         <?else:?>
-            <a class="pagination__link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=GetMessage("nav_begin")?></a>
+            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_begin")?></a>
             <?if ($arResult["NavPageNomer"] > 2):?>
-                <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
+                <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
             <?else:?>
-                <a class="pagination__link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=GetMessage("nav_prev")?></a>
+                <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_prev")?></a>
             <?endif?>
         <?endif?>
     <?else:?>
@@ -51,16 +49,16 @@ $strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["Nav
         <?if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):?>
             <p class="pagination__link pagination__link_active"><?=$arResult["nStartPage"]?></p>
         <?elseif($arResult["nStartPage"] == 1 && $arResult["bSavePage"] == false):?>
-            <a class="pagination__link" href="<?=$arResult["sUrlPath"]?><?=$strNavQueryStringFull?>"><?=$arResult["nStartPage"]?></a>
+            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=$arResult["nStartPage"]?></a>
         <?else:?>
-            <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$arResult["nStartPage"]?></a>
+            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$arResult["nStartPage"]?></a>
         <?endif?>
         <?$arResult["nStartPage"]++?>
     <?endwhile?>
 
     <?if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):?>
-        <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_next")?></a>&nbsp;
-        <a class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>"><?=GetMessage("nav_end")?></a>
+        <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_next")?></a>&nbsp;
+        <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>"><?=GetMessage("nav_end")?></a>
     <?else:?>
 
         <p class="pagination__link"><?=GetMessage("nav_next")?></p>
@@ -68,5 +66,6 @@ $strNavQueryStringFull = ($arResult["NavQueryString"] != "" ? "?".$arResult["Nav
     <?endif?>
 </div>
 <? endif?>
+
 
 

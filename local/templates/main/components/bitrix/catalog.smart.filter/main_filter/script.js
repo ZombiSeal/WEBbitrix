@@ -1,4 +1,5 @@
 // BX.noConflict();
+
 function JCSmartFilter(ajaxURL, viewMode, params)
 {
 	this.ajaxURL = ajaxURL;
@@ -12,11 +13,11 @@ function JCSmartFilter(ajaxURL, viewMode, params)
 	// {
 	// 	this.bindUrlToButton('set_filter', params.SEF_SET_FILTER_URL);
 	// 	this.sef = true;
+	// // }
+	// if (params && params.SEF_DEL_FILTER_URL)
+	// {
+	// 	this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
 	// }
-	if (params && params.SEF_DEL_FILTER_URL)
-	{
-		this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
-	}
 }
 
 JCSmartFilter.prototype.keyup = function(input)
@@ -40,7 +41,7 @@ JCSmartFilter.prototype.click = function(checkbox)
 
 	this.timer = setTimeout(BX.delegate(function(){
 		this.reload(checkbox);
-	}, this), 500);
+	}, this), 200);
 };
 
 JCSmartFilter.prototype.reload = function(input)
@@ -196,6 +197,7 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 
 			if (result.FILTER_AJAX_URL && result.COMPONENT_CONTAINER_ID)
 			{
+
 				BX.unbindAll(hrefFILTER[0]);
 				BX.bind(hrefFILTER[0], 'click', function(e)
 				{
@@ -230,14 +232,14 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 					url,
 					function(res){
 
+						$('.catalog-list').html($(res).find('.catalog-list').html());
+
 						if($(res).find('.pagination').html() !== null) {
 							$('.pagination').html($(res).find('.pagination').html()).show();
 						} else {
 							$('.pagination').hide();
 						}
-						$('.catalog-list').html($(res).find('.catalog-list').html());
 
-						console.log(res);
 					}
 				);
 			}
@@ -473,23 +475,23 @@ BX.namespace("BX.Iblock.SmartFilter");
 BX.Iblock.SmartFilter = (function()
 {
 	/** @param {{
-			leftSlider: string,
-			rightSlider: string,
-			tracker: string,
-			trackerWrap: string,
-			minInputId: string,
-			maxInputId: string,
-			minPrice: float|int|string,
-			maxPrice: float|int|string,
-			curMinPrice: float|int|string,
-			curMaxPrice: float|int|string,
-			fltMinPrice: float|int|string|null,
-			fltMaxPrice: float|int|string|null,
-			precision: int|null,
-			colorUnavailableActive: string,
-			colorAvailableActive: string,
-			colorAvailableInactive: string
-		}} arParams
+	 leftSlider: string,
+	 rightSlider: string,
+	 tracker: string,
+	 trackerWrap: string,
+	 minInputId: string,
+	 maxInputId: string,
+	 minPrice: float|int|string,
+	 maxPrice: float|int|string,
+	 curMinPrice: float|int|string,
+	 curMaxPrice: float|int|string,
+	 fltMinPrice: float|int|string|null,
+	 fltMaxPrice: float|int|string|null,
+	 precision: int|null,
+	 colorUnavailableActive: string,
+	 colorAvailableActive: string,
+	 colorAvailableInactive: string
+	 }} arParams
 	 */
 	var SmartFilter = function(arParams)
 	{

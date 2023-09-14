@@ -34,6 +34,7 @@ use Bitrix\Main\Page\Asset;
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css");
 
+
     ?>
 
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"

@@ -21,6 +21,10 @@ $templateData = array(
     'TEMPLATE_CLASS' => 'bx-' . $arParams['TEMPLATE_THEME']
 );
 
+//echo '<pre>';
+//var_dump($arResult);
+//echo '<pre>';
+
 //if (isset($templateData['TEMPLATE_THEME'])) {
 //    $this->addExternalCss($templateData['TEMPLATE_THEME']);
 //}
@@ -34,13 +38,14 @@ $templateData = array(
           method="get">
         <div class="aside__filter accordion">
             <div class="aside__filter__item btn-wr mob-hidden">
-                <input
-                        class="btn gray"
-                        type="submit"
-                        id="del_filter"
-                        name="del_filter"
-                        value="<?=GetMessage("CT_BCSF_DEL_FILTER")?>"
-                />
+                <a href="<?=$arResult["SEF_DEL_FILTER_URL"]?>" onclick="" class="btn gray" title="">Очистить фильтры</a>
+<!--                <input-->
+<!--                        class="btn gray"-->
+<!--                        type="submit"-->
+<!--                        id="del_filter"-->
+<!--                        name="del_filter"-->
+<!--                        value="--><?php //=GetMessage("CT_BCSF_DEL_FILTER")?><!--"-->
+<!--                />-->
             </div>
             <? foreach ($arResult["HIDDEN"] as $arItem): ?>
                 <input type="hidden" name="<? echo $arItem["CONTROL_NAME"] ?>" id="<? echo $arItem["CONTROL_ID"] ?>"
@@ -491,24 +496,27 @@ $templateData = array(
                 <?
             }
             ?>
-            <div class="aside__filter__item btn-wr mob-hidden"><!--                <a class="btn gray" href="#">-->
-                <?php //= GetMessage("CT_BCSF_DEL_FILTER") ?><!--</a> <!-- Сброс фильтра ???? -->
-                <input
-                        class="btn gray"
-                        type="submit"
-                        id="del_filter"
-                        name="del_filter"
-                        value="<?= GetMessage("CT_BCSF_DEL_FILTER") ?>"
-                />
-                <div class="bx-filter-popup-result <? if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
-                     id="modef" <? if (!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"'; ?>
-                     style="display: inline-block;">
-                    <? echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">' . (int)($arResult["ELEMENT_COUNT"] ?? 0) . '</span>')); ?>
-                    <span class="arrow"></span>
-                    <br/>
-                    <a href="<? echo $arResult["FILTER_URL"] ?>"
-                       target=""><? echo GetMessage("CT_BCSF_FILTER_SHOW") ?></a>
-                </div>
+            <div class="aside__filter__item btn-wr mob-hidden">
+
+                <a href="<?=$arResult["SEF_DEL_FILTER_URL"]?>" onclick="" class="btn gray" title="">Очистить фильтры</a>
+
+<!--                <input-->
+<!--                        class="btn gray"-->
+<!--                        type="submit"-->
+<!--                        id="del_filter"-->
+<!--                        name="del_filter"-->
+<!--                        value="--><?php //=GetMessage("CT_BCSF_DEL_FILTER")?><!--"-->
+<!--                        onclick=""-->
+<!--                />-->
+            </div>
+            <div class="bx-filter-popup-result <? if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
+                 id="modef" <? if (!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"'; ?>
+                 style="display: inline-block;">
+                <? echo GetMessage("CT_BCSF_FILTER_COUNT", array("#ELEMENT_COUNT#" => '<span id="modef_num">' . (int)($arResult["ELEMENT_COUNT"] ?? 0) . '</span>')); ?>
+                <span class="arrow"></span>
+                <br/>
+                <a href="<? echo $arResult["FILTER_URL"] ?>"
+                   target=""><? echo GetMessage("CT_BCSF_FILTER_SHOW") ?></a>
             </div>
         </div>
     </form>
