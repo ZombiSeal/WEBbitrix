@@ -99,6 +99,7 @@ $containerName = 'container-'.$navParams['NavNum'];
 
 
 
+
 //if (!isset($arParams['HIDE_SECTION_DESCRIPTION']) || $arParams['HIDE_SECTION_DESCRIPTION'] !== 'Y')
 //{
 //	?>
@@ -108,6 +109,8 @@ $containerName = 'container-'.$navParams['NavNum'];
 <!--	--><?//
 //}
 ?>
+
+
 
 	<?
 	if (!empty($arResult['ITEMS']) && !empty($arResult['ITEM_ROWS']))
@@ -261,6 +264,7 @@ $containerName = 'container-'.$navParams['NavNum'];
 
 					case 2:
 						?>
+
 						<div class="width-75">
 							<div class="clearfix catalog-list">
 								<?

@@ -195,17 +195,17 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 				hrefFILTER[0].href = BX.util.htmlspecialcharsback(result.FILTER_URL);
 			}
 
-			if (result.FILTER_AJAX_URL && result.COMPONENT_CONTAINER_ID)
-			{
-
-				BX.unbindAll(hrefFILTER[0]);
-				BX.bind(hrefFILTER[0], 'click', function(e)
-				{
-					url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
-					BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
-					return BX.PreventDefault(e);
-				});
-			}
+			// if (result.FILTER_AJAX_URL && result.COMPONENT_CONTAINER_ID)
+			// {
+			//
+			// 	BX.unbindAll(hrefFILTER[0]);
+			// 	BX.bind(hrefFILTER[0], 'click', function(e)
+			// 	{
+			// 		url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
+			// 		BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
+			// 		return BX.PreventDefault(e);
+			// 	});
+			// }
 
 			if (result.INSTANT_RELOAD && result.COMPONENT_CONTAINER_ID)
 			{
@@ -224,14 +224,25 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 				//
 				// 	}
 				// );
-				var params = window.location.search;
+
+				// var str = "Пример строки для замены";
+				// var start = 8; // Позиция, с которой начинается замена
+				// var replacement = "замененная часть"; // Строка, которой будет заменена часть
+				//
+				// var newStr = str.substring(0, start) + replacement + str.substring(start + replacement.length);
+				// console.log(newStr);
 
 				url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
+				var newUrl = url.indexOf('?');
+				console.log(newUrl);
+				var params = window.location.search;
+				newUrl = url.substring(0, newUrl) + params;
+				console.log(newUrl);
 				// BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
 				BX.ajax.get(
-					url,
+					newUrl,
 					function(res){
-
+						console.log(result);
 						$('.catalog-list').html($(res).find('.catalog-list').html());
 
 						if($(res).find('.pagination').html() !== null) {
@@ -239,9 +250,12 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 						} else {
 							$('.pagination').hide();
 						}
+						return false;
 
 					}
 				);
+
+
 			}
 			else
 			{
@@ -256,10 +270,10 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 					curProp.appendChild(modef);
 				}
 
-				if (result.SEF_SET_FILTER_URL)
-				{
-					this.bindUrlToButton('set_filter', result.SEF_SET_FILTER_URL);
-				}
+				// if (result.SEF_SET_FILTER_URL)
+				// {
+				// 	this.bindUrlToButton('set_filter', result.SEF_SET_FILTER_URL);
+				// }
 			}
 		}
 	}
