@@ -236,11 +236,12 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 				var newUrl = url.indexOf('?');
 				console.log(newUrl);
 				var params = window.location.search;
-				newUrl = url.substring(0, newUrl) + params;
+				var filterId = url.slice(newUrl, url.length);
+				newUrl = url.substring(0, newUrl) + params+ filterId;
 				console.log(newUrl);
 				// BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
 				BX.ajax.get(
-					newUrl,
+					url,
 					function(res){
 						console.log(result);
 						$('.catalog-list').html($(res).find('.catalog-list').html());
@@ -250,8 +251,6 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 						} else {
 							$('.pagination').hide();
 						}
-						return false;
-
 					}
 				);
 
