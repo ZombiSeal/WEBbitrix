@@ -28,9 +28,7 @@ $this->setFrameMode(true);//$this->addExternalCss("/bitrix/css/main/bootstrap.cs
 //
 //$sortField = 'ID';
 //$sortOrder = 'ASC';
-
-if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "property_price"))
-{
+if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "property_price")) {
     $sortField = $_GET["sort"];
     $sortOrder = $_GET["method"];
     $arParams["ELEMENT_SORT_FIELD"] = $_GET["sort"];
@@ -50,7 +48,7 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
                 <li <?php if ($_GET["sort"] == "property_price" && $_GET["method"] == "desc"):?> class="selected" <?endif;?>>
                     <a href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=property_price&method=desc" title="">Дорогие</a>
                 </li>
-                <li <?php if ($_GET["sort"] == "id" ):?> class="selected" <?endif;?>>
+                <li <?php if ($_GET["sort"] == "id" || empty($_GET["sort"])):?> class="selected" <?endif;?>>
                     <a href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=id&method=asc" title="">Все</a>
                 </li>
 
@@ -289,8 +287,8 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
     ?>
 </div>
 <script>
-    $.getScript("/local/templates/main/assets/js/common.js");
-    $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
+    // $.getScript("/local/templates/main/assets/js/common.js");
+    // $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
 </script>
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;

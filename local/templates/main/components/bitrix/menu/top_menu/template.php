@@ -16,7 +16,7 @@ require "result_modify.php";
                     <ul class="sub-menu">
                         <?php foreach ($item['subitems'] as $subitem): ?>
                             <li>
-                                <a href="<?= $subitem['LINK']; ?>?sort=id&method=asc"><?=$subitem['TEXT'] ?? '';?></a>
+                                <a href="<?= $subitem['LINK']; ?>"><?=$subitem['TEXT'] ?? '';?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>

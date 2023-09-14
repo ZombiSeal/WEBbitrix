@@ -8,7 +8,8 @@ $APPLICATION->SetTitle("Батарейки");
 		"PAGE" => "#SITE_DIR#search.php",
 		"USE_SUGGEST" => "N"
 	)
-);?><?$APPLICATION->IncludeComponent(
+);?>
+<?$APPLICATION->IncludeComponent(
 	"bitrix:catalog",
 	"main_catalog",
 	Array(
@@ -55,7 +56,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"DISABLE_INIT_JS_IN_COMPONENT" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"ELEMENT_SORT_FIELD" => "sort",
+		"ELEMENT_SORT_FIELD" => "property_id",
 		"ELEMENT_SORT_FIELD2" => "id",
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_SORT_ORDER2" => "desc",

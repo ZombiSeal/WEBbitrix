@@ -259,7 +259,7 @@ $arrUrl = explode('/', $APPLICATION->GetCurPage());
                     <ul class="breadcrums">
                         <? $APPLICATION->IncludeComponent(
                             "bitrix:breadcrumb",
-                            "",
+                            "main_bread",
                             array(
                                 "PATH" => "",
                                 "SITE_ID" => "s1",

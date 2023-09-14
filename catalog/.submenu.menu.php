@@ -2,21 +2,28 @@
 $aMenuLinks = Array(
 	Array(
 		"Элементы питания", 
-		"/catalog/elementy-pitaniya/", 
+		"/catalog/elementy-pitaniya/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Бытовые аккумуляторы", 
-		"/catalog/bytovye-akkumulyatory/", 
+		"/catalog/bytovye-akkumulyatory/",
 		Array(), 
 		Array(), 
 		"" 
 	),
 	Array(
 		"Зарядные устройства", 
-		"/catalog/zaryadnye-ustroystva/", 
+		"/catalog/zaryadnye-ustroystva/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Пробный", 
+		"/catalog/probnyy/", 
 		Array(), 
 		Array(), 
 		"" 

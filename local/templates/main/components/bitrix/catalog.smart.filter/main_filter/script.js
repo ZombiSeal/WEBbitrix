@@ -161,8 +161,6 @@ JCSmartFilter.prototype.reload = function(input)
 
 JCSmartFilter.prototype.postHandler = function (result, fromCache)
 {
-
-	console.log(result.FILTER_AJAX_URL);
 	var hrefFILTER, url, curProp;
 	var modef = BX('modef');
 	var modef_num = BX('modef_num');
@@ -224,8 +222,24 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 				//
 				// 	}
 				// );
+				var params = window.location.search;
+
 				url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
-				BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
+				// BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
+				BX.ajax.get(
+					url,
+					function(res){
+
+						if($(res).find('.pagination').html() !== null) {
+							$('.pagination').html($(res).find('.pagination').html()).show();
+						} else {
+							$('.pagination').hide();
+						}
+						$('.catalog-list').html($(res).find('.catalog-list').html());
+
+						console.log(res);
+					}
+				);
 			}
 			else
 			{
