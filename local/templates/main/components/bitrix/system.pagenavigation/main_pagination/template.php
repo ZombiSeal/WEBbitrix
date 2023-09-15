@@ -17,24 +17,39 @@ if(!$arResult["NavShowAlways"])
 	if ($arResult["NavRecordCount"] == 0 || ($arResult["NavPageCount"] == 1 && $arResult["NavShowAll"] == false))
 		return;
 }
+//
+//var_dump($_GET);
+
+//echo '<pre>';
+//var_dump($arResult);
+//echo '<pre>';
+
+//$symbol = "?";
+//
+if(isset($_GET['sort']) && isset($_GET['method']))
+{
+    $arResult['sUrlPath'] .= '&sort=' . $_GET['sort'] . '&method=' . $_GET['method'];
+}
+
+//<?if ($arResult["NavPageNomer"] > 2):
+//elseif($arResult["nStartPage"] == 1 && $arResult["bSavePage"] == false):
+//if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):
+
+var_dump($_GET);
 
 ?>
 
-
-<?if($arResult["bDescPageNumbering"] !== true):?>
-
 <div class="pagination">
     <?if ($arResult["NavPageNomer"] > 1):?>
-
-        <?if($arResult["bSavePage"]):?>
-            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=1"><?=GetMessage("nav_begin")?></a>
-            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
+         <?if($arResult["bSavePage"]):?>
+            <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=1"><?=GetMessage("nav_begin")?></a>
+            <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
         <?else:?>
-            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_begin")?></a>
+            <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_begin")?></a>
             <?if ($arResult["NavPageNomer"] > 2):?>
-                <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
+                <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>"><?=GetMessage("nav_prev")?></a>
             <?else:?>
-                <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_prev")?></a>
+                <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=GetMessage("nav_prev")?></a>
             <?endif?>
         <?endif?>
     <?else:?>
@@ -47,25 +62,29 @@ if(!$arResult["NavShowAlways"])
     <?while($arResult["nStartPage"] <= $arResult["nEndPage"]):?>
 
         <?if ($arResult["nStartPage"] == $arResult["NavPageNomer"]):?>
+
             <p class="pagination__link pagination__link_active"><?=$arResult["nStartPage"]?></p>
         <?elseif($arResult["nStartPage"] == 1 && $arResult["bSavePage"] == false):?>
-            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>"><?=$arResult["nStartPage"]?></a>
+
+            <a target="_self" class="pagination__link num" href="<?=$arResult["sUrlPath"]?>"><?=$arResult["nStartPage"]?></a>
         <?else:?>
-            <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$arResult["nStartPage"]?></a>
+
+            <a target="_self" class="pagination__link num" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["nStartPage"]?>"><?=$arResult["nStartPage"]?></a>
         <?endif?>
+
         <?$arResult["nStartPage"]++?>
     <?endwhile?>
 
     <?if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):?>
-        <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_next")?></a>&nbsp;
-        <a onclick="" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?<PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>"><?=GetMessage("nav_end")?></a>
+        <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>"><?=GetMessage("nav_next")?></a>&nbsp;
+        <a target="_self" class="pagination__link" href="<?=$arResult["sUrlPath"]?>?PAGEN_<?=$arResult["NavNum"]?>=<?=$arResult["NavPageCount"]?>"><?=GetMessage("nav_end")?></a>
     <?else:?>
 
         <p class="pagination__link"><?=GetMessage("nav_next")?></p>
         <p class="pagination__link"><?=GetMessage("nav_end")?></p>
     <?endif?>
 </div>
-<? endif?>
+
 
 
 

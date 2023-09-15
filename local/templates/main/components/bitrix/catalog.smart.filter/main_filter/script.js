@@ -210,17 +210,18 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 			if (result.INSTANT_RELOAD && result.COMPONENT_CONTAINER_ID)
 			{
 				// $.get(
-				// 	result.FILTER_AJAX_URL,
+				// 	// result.FILTER_AJAX_URL,
+				// 	'http://bitrixtask2:666/catalog/bytovye-akkumulyatory/?arrFilter_9_2508888777=Y&set_filter=y',
 				// 	function (data) {
-				// 		console.log(result.FILTER_AJAX_URL);
-				// 		history.pushState({}, null, result.FILTER_AJAX_URL);
-				// 		if($(data).find('.pagination').html() !== null) {
-				// 			$('.pagination').html($(data).find('.pagination').html()).show();
-				// 		} else {
-				// 			$('.pagination').hide();
-				// 		}
-				//
-				// 		$('.catalog-list').html($(data).find('.catalog-list').html());
+				// 		console.log(data);
+				// 		// history.pushState({}, null, result.FILTER_AJAX_URL);
+				// 		// if($(data).find('.pagination').html() !== null) {
+				// 		// 	$('.pagination').html($(data).find('.pagination').html()).show();
+				// 		// } else {
+				// 		// 	$('.pagination').hide();
+				// 		// }
+				// 		//
+				// 		// $('.catalog-list').html($(data).find('.catalog-list').html());
 				//
 				// 	}
 				// );
@@ -232,29 +233,54 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache)
 				// var newStr = str.substring(0, start) + replacement + str.substring(start + replacement.length);
 				// console.log(newStr);
 
+
+				// var newUrl = url.indexOf('?');
+				// console.log(newUrl);
+				// var params = window.location.search;
+				// var filterId = url.slice(newUrl, url.length);
+				// newUrl = url.substring(0, newUrl) + params+ filterId;
+				// console.log(newUrl);
+
+				var params = window
+					.location
+					.search
+					.replace('?','')
+					.split('&')
+					.reduce(
+						function(p,e){
+							var a = e.split('=');
+							p[ decodeURIComponent(a[0])] = decodeURIComponent(a[1]);
+							return p;
+						},
+						{}
+					);
+
+				console.log(params)
+				if (params['sort'] !== undefined && params['method'] !== undefined){
+					console.log('hello');
+					result.FILTER_AJAX_URL += '&sort=' + params['sort'] + '&method=' + params['method'];
+				}
 				url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
-				var newUrl = url.indexOf('?');
-				console.log(newUrl);
-				var params = window.location.search;
-				var filterId = url.slice(newUrl, url.length);
-				newUrl = url.substring(0, newUrl) + params+ filterId;
-				console.log(newUrl);
+				console.log(url);
 				// BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
 				BX.ajax.get(
 					url,
 					function(res){
 						console.log(result);
+						$('.pagination').remove();
 						$('.catalog-list').html($(res).find('.catalog-list').html());
+						var pagination = $(res).find('.pagination');
+						$(".catalog-list").append(pagination);
+						//  Добавляем посты в конец контейнера
+						 //  добавляем навигацию следом
 
-						if($(res).find('.pagination').html() !== null) {
-							$('.pagination').html($(res).find('.pagination').html()).show();
-						} else {
-							$('.pagination').hide();
-						}
+						// if($(res).find('.pagination').html() !== null) {
+						// 	$('.pagination').html($(res).find('.pagination').html()).show();
+						// } else {
+						// 	$('.pagination').hide();
+						// }
 					}
 				);
-
-
 			}
 			else
 			{

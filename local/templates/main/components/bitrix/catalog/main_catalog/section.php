@@ -287,8 +287,17 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
     ?>
 </div>
 <script>
-    // $.getScript("/local/templates/main/assets/js/common.js");
-    // $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
+    function pag(){
+        $(document).on("click", ".pagination__link", function(event){
+            console.log("hello");
+
+            // $.getScript("/local/templates/main/assets/js/common.js");
+            // $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
+        });
+    }
+
+    // setTimeout(pag, 5000);
+
 </script>
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
