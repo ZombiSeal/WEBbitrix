@@ -8,7 +8,8 @@ $APPLICATION->SetTitle("Батарейки");
 		"PAGE" => "#SITE_DIR#search.php",
 		"USE_SUGGEST" => "N"
 	)
-);?><?$APPLICATION->IncludeComponent(
+);?>
+<?$APPLICATION->IncludeComponent(
 	"bitrix:catalog",
 	"main_catalog",
 	Array(
@@ -17,7 +18,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"ADD_PICT_PROP" => "MORE_PHOTO",
 		"ADD_PROPERTIES_TO_BASKET" => "N",
 		"ADD_SECTIONS_CHAIN" => "N",
-		"AJAX_MODE" => "N",
+		"AJAX_MODE" => "Y",
 		"AJAX_OPTION_ADDITIONAL" => "",
 		"AJAX_OPTION_HISTORY" => "Y",
 		"AJAX_OPTION_JUMP" => "N",
@@ -37,12 +38,12 @@ $APPLICATION->SetTitle("Батарейки");
 		"DETAIL_DISPLAY_NAME" => "Y",
 		"DETAIL_DISPLAY_PREVIEW_TEXT_MODE" => "E",
 		"DETAIL_IMAGE_RESOLUTION" => "16by9",
-		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array("MARK"),
+		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array("MARK","VOLTAGE"),
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
 		"DETAIL_PRODUCT_PAY_BLOCK_ORDER" => "rating,price,priceRanges,quantityLimit,quantity,buttons",
-		"DETAIL_PROPERTY_CODE" => array("MARK","STRUCTURE","PRODUCER","PROVIDER","GUARANTEE",""),
+		"DETAIL_PROPERTY_CODE" => array("PRICE","ARTICLE","MARK","STOCK_COUNT","TYPE_CONNECT","VOLTAGE","PRODUCER","PROVIDER","GUARANTEE",""),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DETAIL_SHOW_POPULAR" => "Y",
 		"DETAIL_SHOW_SLIDER" => "Y",
@@ -55,7 +56,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"DISABLE_INIT_JS_IN_COMPONENT" => "N",
 		"DISPLAY_BOTTOM_PAGER" => "Y",
 		"DISPLAY_TOP_PAGER" => "N",
-		"ELEMENT_SORT_FIELD" => "sort",
+		"ELEMENT_SORT_FIELD" => "property_id",
 		"ELEMENT_SORT_FIELD2" => "id",
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_SORT_ORDER2" => "desc",
@@ -65,7 +66,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"IBLOCK_ID" => "5",
 		"IBLOCK_TYPE" => "catalog",
 		"INCLUDE_SUBSECTIONS" => "Y",
-		"INSTANT_RELOAD" => "N",
+		"INSTANT_RELOAD" => "Y",
 		"LABEL_PROP" => array(),
 		"LAZY_LOAD" => "N",
 		"LINE_ELEMENT_COUNT" => "3",
@@ -124,7 +125,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"SECTION_TOP_DEPTH" => "2",
 		"SEF_FOLDER" => "/catalog/",
 		"SEF_MODE" => "Y",
-		"SEF_URL_TEMPLATES" => Array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE_PATH#/#ELEMENT_CODE#","section"=>"#SECTION_CODE_PATH#/","sections"=>"","smart_filter"=>"#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/"),
+		"SEF_URL_TEMPLATES" => Array("compare"=>"compare.php?action=#ACTION_CODE#","element"=>"#SECTION_CODE#/#ELEMENT_CODE#/","section"=>"#SECTION_CODE#/","sections"=>"","smart_filter"=>"#SECTION_CODE#/filter/#SMART_FILTER_PATH#/apply/"),
 		"SET_LAST_MODIFIED" => "N",
 		"SET_STATUS_404" => "N",
 		"SET_TITLE" => "N",
