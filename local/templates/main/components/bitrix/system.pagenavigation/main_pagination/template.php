@@ -18,12 +18,27 @@ if(!$arResult["NavShowAlways"])
 		return;
 }
 
+
+//$symbol = (strpos($APPLICATION->GetCurUri(), "?")) ? "&" : "?";
+
+//var_dump($arResult["sUrlPath"]);
+
 $symbol = "?";
+var_dump($arResult["sUrlPath"]);
+
+//
+if (isset($_GET['q']))
+{
+    $arResult["sUrlPath"] .= $symbol . 'q=' . $_GET['q'];
+    $symbol = "&";
+}
+
 if(isset($_GET['sort']) && isset($_GET['method']))
 {
+    $arResult["sUrlPath"] .= $symbol . 'sort=' . $_GET['sort'] . '&method=' . $_GET['method'];
     $symbol = "&";
-    $arResult["sUrlPath"] = '?sort=' . $_GET['sort'] . '&method=' . $_GET['method'];
 }
+
 
 ?>
 

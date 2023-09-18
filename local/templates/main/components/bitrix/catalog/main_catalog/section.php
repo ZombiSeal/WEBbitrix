@@ -34,6 +34,7 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
     $arParams["ELEMENT_SORT_FIELD"] = $_GET["sort"];
     $arParams["ELEMENT_SORT_ORDER"] = $_GET["method"];
 }
+
 ?>
 
 <div class="catalog-area container">
@@ -43,13 +44,13 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
             <div class="label">Сначала:</div>
             <ul class="sort__opt">
                 <li <?php if ($_GET["sort"] == "property_price" && $_GET["method"] == "asc"):?> class="selected" <?endif;?>>
-                    <a href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=property_price&method=asc" title="">Дешёвые</a>
+                    <a href="?sort=property_price&method=asc" title="">Дешёвые</a>
                 </li>
                 <li <?php if ($_GET["sort"] == "property_price" && $_GET["method"] == "desc"):?> class="selected" <?endif;?>>
-                    <a href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=property_price&method=desc" title="">Дорогие</a>
+                    <a href="?sort=property_price&method=desc" title="">Дорогие</a>
                 </li>
                 <li <?php if ($_GET["sort"] == "id" || empty($_GET["sort"])):?> class="selected" <?endif;?>>
-                    <a href="<?=$arResult["SECTION_PAGE_URL"]?>?sort=id&method=asc" title="">Все</a>
+                    <a href="?sort=id&method=asc" title="">Все</a>
                 </li>
 
             </ul>

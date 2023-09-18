@@ -16,7 +16,7 @@ $this->setFrameMode(true);?>
     <div class="container">
         <form class="search clearfix" action="<?=$arResult["FORM_ACTION"]?>">
             <input class="search__txt" name="q" value="" placeholder="Поиск по названию, артикулу, EAN " type="search">
-            <button class="search__submit" name="s" type="submit"><span>Найти</span></button>
+            <button class="search__submit" type="submit"><span>Найти</span></button>
         </form>
     </div>
 </div>
