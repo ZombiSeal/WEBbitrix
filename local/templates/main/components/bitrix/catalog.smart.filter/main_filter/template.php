@@ -16,10 +16,11 @@ use Bitrix\Iblock\SectionPropertyTable;
 
 $this->setFrameMode(true);
 
-$templateData = array(
-    'TEMPLATE_THEME' => $this->GetFolder() . '/themes/' . $arParams['TEMPLATE_THEME'] . '/colors.css',
-    'TEMPLATE_CLASS' => 'bx-' . $arParams['TEMPLATE_THEME']
-);
+//var_dump($arResult["SEF_SET_FILTER_URL"]);
+//$templateData = array(
+//    'TEMPLATE_THEME' => $this->GetFolder() . '/themes/' . $arParams['TEMPLATE_THEME'] . '/colors.css',
+//    'TEMPLATE_CLASS' => 'bx-' . $arParams['TEMPLATE_THEME']
+//);
 
 //echo '<pre>';
 //var_dump($arResult);
@@ -30,6 +31,13 @@ $templateData = array(
 //}
 //$this->addExternalCss("/bitrix/css/main/bootstrap.css");
 //$this->addExternalCss("/bitrix/css/main/font-awesome.css");
+$sectionId = $arParams['SECTION_ID'];
+$arSection = CIBlockSection::GetByID($sectionId)->Fetch();
+$sectionName = $arSection['NAME'];
+
+var_dump($APPLICATION->GetCurPage());
+
+$radioChecked = (isset($_GET["sort"]) && isset($_GET["method"])) ? ('sort=' . $_GET['sort'] . '&method=' . $_GET['method']) : false;
 
 ?>
 <div class="width-25 aside mobile-filters">
@@ -37,15 +45,60 @@ $templateData = array(
     <form name="<? echo $arResult["FILTER_NAME"] . "_form" ?>" action=""
           method="get">
         <div class="aside__filter accordion">
+            <div class = "aside__filter__header">
+                <div class = "aside__filter__cat"><?=$sectionName?></div>
+                <div class = "aside__filter__close"></div>
+            </div>
+            <div class="aside__filter__item aside-mob-sort">
+                <div class="aside__filter__item__title accordion-item">Сначала</div>
+                <div class="aside__filter__item__var data">
+                    <ul class="radio">
+                        <li>
+                            <label>
+                                <input
+                                        onclick="smartFilter.radio(this)"
+                                        id="sort_all"
+                                        class="sort"
+                                        name="sort"
+                                        value="?sort=id&method=asc"
+                                        type="radio"
+                                    <? echo $radioChecked == 'sort=id&method=asc' ? 'checked="checked"' : '' ?>
+                                >
+                                <span>Все</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input onclick="smartFilter.radio(this)"
+                                       id="sort_price_asc"
+                                       class="sort"
+                                       name="sort"
+                                       value="?sort=property_price&method=asc"
+                                       type="radio"
+                                    <? echo $radioChecked == 'sort=property_price&method=asc' ? 'checked="checked"' : '' ?>
+                                >
+                                <span>Дешевые</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input onclick="smartFilter.radio(this)"
+                                       id="sort_price_desc"
+                                       class="sort"
+                                       name="sort"
+                                       value="?sort=property_price&method=desc"
+                                       type="radio"
+                                    <? echo $radioChecked == 'sort=property_price&method=desc' ? 'checked="checked"' : '' ?>
+                                >
+                                <span>Дорогие</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="aside__filter__item btn-wr mob-hidden">
                 <a href="<?=$arResult["SEF_DEL_FILTER_URL"]?>" onclick="" class="btn gray" title="">Очистить фильтры</a>
-<!--                <input-->
-<!--                        class="btn gray"-->
-<!--                        type="submit"-->
-<!--                        id="del_filter"-->
-<!--                        name="del_filter"-->
-<!--                        value="--><?php //=GetMessage("CT_BCSF_DEL_FILTER")?><!--"-->
-<!--                />-->
             </div>
             <? foreach ($arResult["HIDDEN"] as $arItem): ?>
                 <input type="hidden" name="<? echo $arItem["CONTROL_NAME"] ?>" id="<? echo $arItem["CONTROL_ID"] ?>"
@@ -497,17 +550,11 @@ $templateData = array(
             }
             ?>
             <div class="aside__filter__item btn-wr mob-hidden">
-
                 <a href="<?=$arResult["SEF_DEL_FILTER_URL"]?>" onclick="" class="btn gray" title="">Очистить фильтры</a>
-
-<!--                <input-->
-<!--                        class="btn gray"-->
-<!--                        type="submit"-->
-<!--                        id="del_filter"-->
-<!--                        name="del_filter"-->
-<!--                        value="--><?php //=GetMessage("CT_BCSF_DEL_FILTER")?><!--"-->
-<!--                        onclick=""-->
-<!--                />-->
+            </div>
+            <div class="aside__filter__item btn-wr mobile-filter-active">
+                <a href="<?=$arResult["SEF_DEL_FILTER_URL"]?>" onclick="" class="btn gray" title="">Очистить</a>
+                <a href="" onclick="smartFilter.submit(this)" class="btn appruve" title=""><span>Готово</span></a>
             </div>
             <div class="bx-filter-popup-result <? if ($arParams["FILTER_VIEW_MODE"] == "VERTICAL") echo $arParams["POPUP_POSITION"] ?>"
                  id="modef" <? if (!isset($arResult["ELEMENT_COUNT"])) echo 'style="display:none"'; ?>

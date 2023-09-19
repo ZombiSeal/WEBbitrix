@@ -14,11 +14,15 @@ use Bitrix\Main\Page\Asset;
 <html lang="ru" class="lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!-->
 <head>
+
+    <meta charset="utf-8" />
     <meta name="description" content=""/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="cmsmagazine" content="aa4cc816c3e233bc68ec4386b3eabcf3"/>
+
     <?php $APPLICATION->ShowHead(); ?>
+
 
     <title><?php $APPLICATION->ShowTitle(); ?></title>
     <?php
@@ -31,10 +35,8 @@ use Bitrix\Main\Page\Asset;
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/libs/slick-1.8.0/slick/slick-theme.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/fonts.css");
-    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/style.css");
-
-
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/assets/css/media.css");
     ?>
 
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"
@@ -88,26 +90,24 @@ $arrUrl = explode('/', $APPLICATION->GetCurPage());
                 </div>
                 <nav class="mobile-aside__nav__body">
                     <ul class="mobile__menu">
-                        <li class="has-children">
-                            <a href="#" title="">Каталог товаров</a>
-                            <ul class="sub-menu">
-                                <li><a href="#" title="">Элементы питания</a></li>
-                                <li><a href="#" title="">Бытовые аккумуляторы</a></li>
-                                <li><a href="#" title="">Зарядные устройства</a></li>
-                                <li><a href="#" title="">Индустриальные аккумуляторы</a></li>
-                                <li><a href="#" title="">Лампы</a></li>
-                                <li><a href="#" title="">Инверторы</a></li>
-                                <li><a href="#" title="">Стационарные аккумуляторы</a></li>
-                                <li><a href="#" title="">Сервис и ремент аккумуляторов</a></li>
-                                <li><a href="#" title="">Портативные аккумуляторы</a></li>
-                                <li><a href="#" title="">Светильники</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#" title="">О компании</a></li>
-                        <li><a href="#" title="">Партнеры</a></li>
-                        <li><a href="#" title="">Торговые марки</a></li>
-                        <li><a href="#" title="">Статьи</a></li>
-                        <li><a href="#" title="">Контакты</a></li>
+                    <?php $APPLICATION->IncludeComponent(
+                        "bitrix:menu",
+                        "top_menu",
+                        array(
+                            "ALLOW_MULTI_SELECT" => "N",
+                            "CHILD_MENU_TYPE" => "submenu",
+                            "DELAY" => "N",
+                            "MAX_LEVEL" => "2",
+                            "MENU_CACHE_GET_VARS" => array(),
+                            "MENU_CACHE_TIME" => "3600",
+                            "MENU_CACHE_TYPE" => "N",
+                            "MENU_CACHE_USE_GROUPS" => "Y",
+                            "ROOT_MENU_TYPE" => "top",
+                            "USE_EXT" => "N",
+                            "COMPONENT_TEMPLATE" => "top_menu"
+                        ),
+                        false
+                    ); ?>
                     </ul>
                 </nav>
             </div>
@@ -219,6 +219,7 @@ $arrUrl = explode('/', $APPLICATION->GetCurPage());
                                     )
                                 ); ?>
                             </a>
+                            <ul class="header__menu">
                             <?php $APPLICATION->IncludeComponent(
                                 "bitrix:menu",
                                 "top_menu",
@@ -237,6 +238,7 @@ $arrUrl = explode('/', $APPLICATION->GetCurPage());
                                 ),
                                 false
                             ); ?>
+                            </ul>
                             <div class="header__address address">
                                 <?php $APPLICATION->IncludeComponent(
                                     "bitrix:main.include",

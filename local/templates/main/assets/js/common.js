@@ -136,6 +136,11 @@ $(document).ready(function () {
         $("body").toggleClass('overflow');
     });
 
+
+    $(".filter-close").click(function () {
+        $(".mobile-filters").hide();
+
+    });
     /* Контакты справа */
     $(".mobile-address-trigger").click(function () {
         $(".bd-site").toggleClass('mob-contact-open');

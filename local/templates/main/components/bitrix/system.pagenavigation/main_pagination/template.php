@@ -24,7 +24,7 @@ if(!$arResult["NavShowAlways"])
 //var_dump($arResult["sUrlPath"]);
 
 $symbol = "?";
-var_dump($arResult["sUrlPath"]);
+
 
 //
 if (isset($_GET['q']))
