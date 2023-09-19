@@ -26,14 +26,6 @@ global $searchFilter;
      $arParams["ELEMENT_SORT_ORDER"] = $_GET["method"];
  }
 
- // // Формируем новый URL-адрес с сохранением текущих параметров и добавлением новых параметров
- // $newUrl = \CMain::GetCurPageParam(http_build_query($newParams), array_keys($currentParams));
- //
- // // Выводим новый URL-адрес
- // echo $newUrl;
- //
- //var_dump($_GET['q']);
-
 $elementOrder = [];
 if ($arParams['USE_SEARCH_RESULT_ORDER'] === 'N')
 {

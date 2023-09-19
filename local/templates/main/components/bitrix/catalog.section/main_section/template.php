@@ -24,10 +24,6 @@ use Bitrix\Main\Page\Asset;
  */
 
 $this->setFrameMode(true);
-//$this->addExternalCss('/bitrix/css/main/bootstrap.css');
-//echo "<pre>";
-//var_dump($arResult);
-//echo "<pre>";
 
 if (!empty($arResult['NAV_RESULT']))
 {
@@ -98,16 +94,6 @@ $obName = 'ob'.preg_replace('/[^a-zA-Z0-9_]/', 'x', $this->GetEditAreaId($navPar
 $containerName = 'container-'.$navParams['NavNum'];
 
 
-
-
-//if (!isset($arParams['HIDE_SECTION_DESCRIPTION']) || $arParams['HIDE_SECTION_DESCRIPTION'] !== 'Y')
-//{
-//	?>
-<!--	<div class="bx-section-desc bx---><?php //=$arParams['TEMPLATE_THEME']?><!--">-->
-<!--		<p class="bx-section-desc-post">--><?php //=$arResult['DESCRIPTION'] ?? ''?><!--</p>-->
-<!--	</div>-->
-<!--	--><?//
-//}
 ?>
 
 

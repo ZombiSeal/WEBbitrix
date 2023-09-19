@@ -8,15 +8,6 @@ function JCSmartFilter(ajaxURL, viewMode, params) {
     this.cache = [];
     this.popups = [];
     this.viewMode = viewMode;
-    // if (params && params.SEF_SET_FILTER_URL)
-    // {
-    // 	this.bindUrlToButton('set_filter', params.SEF_SET_FILTER_URL);
-    // 	this.sef = true;
-    // // }
-    // if (params && params.SEF_DEL_FILTER_URL)
-    // {
-    // 	this.bindUrlToButton('del_filter', params.SEF_DEL_FILTER_URL);
-    // }
 }
 
 JCSmartFilter.prototype.keyup = function (input) {
@@ -43,14 +34,11 @@ JCSmartFilter.prototype.click = function (checkbox) {
 
 JCSmartFilter.prototype.radio = function (radio) {
     history.pushState({}, null, $(radio).val());
-    // window.location.replace( $(radio).val());
-    console.log($(radio).val());
 };
 
 
 JCSmartFilter.prototype.submit = function (submit) {
     window.location.href = window.location.href;
-    console.log(url);
 };
 
 
@@ -82,12 +70,6 @@ JCSmartFilter.prototype.reload = function (input) {
             this.curFilterinput = input;
             this.postHandler(this.cache[this.cacheKey], true);
         } else {
-            // if (this.sef)
-            // {
-            // 	var set_filter = BX('set_filter');
-            // 	set_filter.disabled = true;
-            // }
-
             this.curFilterinput = input;
             BX.ajax.loadJSON(
                 this.ajaxURL,
@@ -97,72 +79,6 @@ JCSmartFilter.prototype.reload = function (input) {
         }
     }
 };
-
-// JCSmartFilter.prototype.updateItem = function (PID, arItem)
-// {
-// 	if (arItem.PROPERTY_TYPE === 'N' || arItem.PRICE)
-// 	{
-// 		var trackBar = window['trackBar' + PID];
-// 		if (!trackBar && arItem.ENCODED_ID)
-// 			trackBar = window['trackBar' + arItem.ENCODED_ID];
-//
-// 		if (trackBar && arItem.VALUES)
-// 		{
-// 			if (arItem.VALUES.MIN)
-// 			{
-// 				if (arItem.VALUES.MIN.FILTERED_VALUE)
-// 					trackBar.setMinFilteredValue(arItem.VALUES.MIN.FILTERED_VALUE);
-// 				else
-// 					trackBar.setMinFilteredValue(arItem.VALUES.MIN.VALUE);
-// 			}
-//
-// 			if (arItem.VALUES.MAX)
-// 			{
-// 				if (arItem.VALUES.MAX.FILTERED_VALUE)
-// 					trackBar.setMaxFilteredValue(arItem.VALUES.MAX.FILTERED_VALUE);
-// 				else
-// 					trackBar.setMaxFilteredValue(arItem.VALUES.MAX.VALUE);
-// 			}
-// 		}
-// 	}
-// 	else if (arItem.VALUES)
-// 	{
-// 		for (var i in arItem.VALUES)
-// 		{
-// 			if (arItem.VALUES.hasOwnProperty(i))
-// 			{
-// 				var value = arItem.VALUES[i];
-// 				var control = BX(value.CONTROL_ID);
-//
-// 				if (!!control)
-// 				{
-// 					var label = document.querySelector('[data-role="label_'+value.CONTROL_ID+'"]');
-// 					if (value.DISABLED)
-// 					{
-// 						if (label)
-// 							BX.addClass(label, 'disabled');
-// 						else
-// 							BX.addClass(control.parentNode, 'disabled');
-// 					}
-// 					else
-// 					{
-// 						if (label)
-// 							BX.removeClass(label, 'disabled');
-// 						else
-// 							BX.removeClass(control.parentNode, 'disabled');
-// 					}
-//
-// 					if (value.hasOwnProperty('ELEMENT_COUNT'))
-// 					{
-// 						label = document.querySelector('[data-role="count_'+value.CONTROL_ID+'"]');
-// 						if (label)
-// 							label.innerHTML = value.ELEMENT_COUNT;
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// };
 
 JCSmartFilter.prototype.postHandler = function (result, fromCache) {
     var hrefFILTER, url, curProp;
@@ -177,14 +93,6 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache) {
         }
         this.popups = [];
 
-        // for(var PID in result.ITEMS)
-        // {
-        // 	if (result.ITEMS.hasOwnProperty(PID))
-        // 	{
-        // 		this.updateItem(PID, result.ITEMS[PID]);
-        // 	}
-        // }
-
         if (!!modef && !!modef_num) {
             modef_num.innerHTML = result.ELEMENT_COUNT;
             hrefFILTER = BX.findChildren(modef, {tag: 'A'}, true);
@@ -193,51 +101,8 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache) {
                 hrefFILTER[0].href = BX.util.htmlspecialcharsback(result.FILTER_URL);
             }
 
-            // if (result.FILTER_AJAX_URL && result.COMPONENT_CONTAINER_ID)
-            // {
-            //
-            // 	BX.unbindAll(hrefFILTER[0]);
-            // 	BX.bind(hrefFILTER[0], 'click', function(e)
-            // 	{
-            // 		url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
-            // 		BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
-            // 		return BX.PreventDefault(e);
-            // 	});
-            // }
 
             if (result.INSTANT_RELOAD && result.COMPONENT_CONTAINER_ID) {
-                // $.get(
-                // 	// result.FILTER_AJAX_URL,
-                // 	'http://bitrixtask2:666/catalog/bytovye-akkumulyatory/?arrFilter_9_2508888777=Y&set_filter=y',
-                // 	function (data) {
-                // 		console.log(data);
-                // 		// history.pushState({}, null, result.FILTER_AJAX_URL);
-                // 		// if($(data).find('.pagination').html() !== null) {
-                // 		// 	$('.pagination').html($(data).find('.pagination').html()).show();
-                // 		// } else {
-                // 		// 	$('.pagination').hide();
-                // 		// }
-                // 		//
-                // 		// $('.catalog-list').html($(data).find('.catalog-list').html());
-                //
-                // 	}
-                // );
-
-                // var str = "Пример строки для замены";
-                // var start = 8; // Позиция, с которой начинается замена
-                // var replacement = "замененная часть"; // Строка, которой будет заменена часть
-                //
-                // var newStr = str.substring(0, start) + replacement + str.substring(start + replacement.length);
-                // console.log(newStr);
-
-
-                // var newUrl = url.indexOf('?');
-                // console.log(newUrl);
-                // var params = window.location.search;
-                // var filterId = url.slice(newUrl, url.length);
-                // newUrl = url.substring(0, newUrl) + params+ filterId;
-                // console.log(newUrl);
-
 
                 var params = window
                     .location
@@ -256,18 +121,17 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache) {
 
 
                 if (params['sort'] !== undefined && params['method'] !== undefined) {
-                    console.log('hello');
+
                     result.FILTER_AJAX_URL += '&sort=' + params['sort'] + '&method=' + params['method'];
                 }
 
 
                 url = BX.util.htmlspecialcharsback(result.FILTER_AJAX_URL);
-                console.log(url);
-                // BX.ajax.insertToNode(url, result.COMPONENT_CONTAINER_ID);
+
                 BX.ajax.get(
                     url,
                     function (res) {
-                        console.log(result);
+
                         $('.pagination').remove();
                         $('.catalog-list').html($(res).find('.catalog-list').html());
                         var pagination = $(res).find('.pagination');
@@ -287,20 +151,9 @@ JCSmartFilter.prototype.postHandler = function (result, fromCache) {
                     curProp.appendChild(modef);
                 }
 
-                // if (result.SEF_SET_FILTER_URL)
-                // {
-                // 	this.bindUrlToButton('set_filter', result.SEF_SET_FILTER_URL);
-                // }
             }
         }
     }
-
-    // if (this.sef)
-    // {
-    // 	var set_filter = BX('set_filter');
-    // 	set_filter.disabled = false;
-    // 	set_filter.focus();
-    // }
 
     if (!fromCache && this.cacheKey !== '') {
         this.cache[this.cacheKey] = result;

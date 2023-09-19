@@ -8,8 +8,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"PAGE" => "#SITE_DIR#search.php",
 		"USE_SUGGEST" => "N"
 	)
-);?>
-<?$APPLICATION->IncludeComponent(
+);?> <?$APPLICATION->IncludeComponent(
 	"bitrix:catalog",
 	"main_catalog",
 	Array(
@@ -38,12 +37,12 @@ $APPLICATION->SetTitle("Батарейки");
 		"DETAIL_DISPLAY_NAME" => "Y",
 		"DETAIL_DISPLAY_PREVIEW_TEXT_MODE" => "E",
 		"DETAIL_IMAGE_RESOLUTION" => "16by9",
-		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array("MARK","TYPE_CONNECT","VOLTAGE"),
+		"DETAIL_MAIN_BLOCK_PROPERTY_CODE" => array("MARK","TYPE_CONNECT","TYPE","CONTAINER","VOLTAGE","COUNT"),
 		"DETAIL_META_DESCRIPTION" => "-",
 		"DETAIL_META_KEYWORDS" => "-",
 		"DETAIL_PRODUCT_INFO_BLOCK_ORDER" => "sku,props",
 		"DETAIL_PRODUCT_PAY_BLOCK_ORDER" => "rating,price,priceRanges,quantityLimit,quantity,buttons",
-		"DETAIL_PROPERTY_CODE" => array("PRICE","ARTICLE","MARK","STOCK_COUNT","TYPE_CONNECT","VOLTAGE","PRODUCER","PROVIDER","GUARANTEE",""),
+		"DETAIL_PROPERTY_CODE" => array("PRICE","ARTICLE","MARK","TYPE_CONNECT","TYPE","CONTAINER","VOLTAGE","STRUCTURE","COUNT","PRODUCER","PROVIDER","STOCK_COUNT","GUARANTEE",""),
 		"DETAIL_SET_CANONICAL_URL" => "N",
 		"DETAIL_SHOW_POPULAR" => "Y",
 		"DETAIL_SHOW_SLIDER" => "Y",
@@ -60,7 +59,7 @@ $APPLICATION->SetTitle("Батарейки");
 		"ELEMENT_SORT_FIELD2" => "id",
 		"ELEMENT_SORT_ORDER" => "asc",
 		"ELEMENT_SORT_ORDER2" => "desc",
-		"FILTER_HIDE_ON_MOBILE" => "N",
+		"FILTER_HIDE_ON_MOBILE" => "Y",
 		"FILTER_NAME" => "arrFilter",
 		"FILTER_VIEW_MODE" => "VERTICAL",
 		"IBLOCK_ID" => "5",
@@ -166,4 +165,4 @@ $APPLICATION->SetTitle("Батарейки");
 		"USE_PRODUCT_QUANTITY" => "N",
 		"USE_STORE" => "N"
 	)
-);?><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>
+);?><br><?php require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

@@ -25,9 +25,6 @@ $isFilter = ($arParams['USE_FILTER'] == 'Y');
 
 $this->setFrameMode(true);//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
 
-//
-//$sortField = 'ID';
-//$sortOrder = 'ASC';
 if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "property_price")) {
     $sortField = $_GET["sort"];
     $sortOrder = $_GET["method"];
@@ -287,19 +284,6 @@ if (isset($_GET["sort"]) && isset($_GET["method"]) && ($_GET["sort"] == "propert
     );
     ?>
 </div>
-<script>
-    function pag(){
-        $(document).on("click", ".pagination__link", function(event){
-            console.log("hello");
-
-            // $.getScript("/local/templates/main/assets/js/common.js");
-            // $.getScript("/local/templates/main/assets/js/custom-ui-slider.js");
-        });
-    }
-
-    // setTimeout(pag, 5000);
-
-</script>
 <?
 $GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $intSectionID;
 ?>

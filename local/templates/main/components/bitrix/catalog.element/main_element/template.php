@@ -17,11 +17,6 @@ use Bitrix\Catalog\ProductTable;
 
 $this->setFrameMode(true);
 
-
-//echo "<pre>";
-//var_dump($arResult);
-//echo "<pre>";
-
 ?>
 <div class="container">
     <div class="single-product">

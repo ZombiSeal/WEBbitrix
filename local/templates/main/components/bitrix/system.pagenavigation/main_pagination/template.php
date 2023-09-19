@@ -18,15 +18,8 @@ if(!$arResult["NavShowAlways"])
 		return;
 }
 
-
-//$symbol = (strpos($APPLICATION->GetCurUri(), "?")) ? "&" : "?";
-
-//var_dump($arResult["sUrlPath"]);
-
 $symbol = "?";
 
-
-//
 if (isset($_GET['q']))
 {
     $arResult["sUrlPath"] .= $symbol . 'q=' . $_GET['q'];

@@ -16,26 +16,9 @@ use Bitrix\Iblock\SectionPropertyTable;
 
 $this->setFrameMode(true);
 
-//var_dump($arResult["SEF_SET_FILTER_URL"]);
-//$templateData = array(
-//    'TEMPLATE_THEME' => $this->GetFolder() . '/themes/' . $arParams['TEMPLATE_THEME'] . '/colors.css',
-//    'TEMPLATE_CLASS' => 'bx-' . $arParams['TEMPLATE_THEME']
-//);
-
-//echo '<pre>';
-//var_dump($arResult);
-//echo '<pre>';
-
-//if (isset($templateData['TEMPLATE_THEME'])) {
-//    $this->addExternalCss($templateData['TEMPLATE_THEME']);
-//}
-//$this->addExternalCss("/bitrix/css/main/bootstrap.css");
-//$this->addExternalCss("/bitrix/css/main/font-awesome.css");
 $sectionId = $arParams['SECTION_ID'];
 $arSection = CIBlockSection::GetByID($sectionId)->Fetch();
 $sectionName = $arSection['NAME'];
-
-var_dump($APPLICATION->GetCurPage());
 
 $radioChecked = (isset($_GET["sort"]) && isset($_GET["method"])) ? ('sort=' . $_GET['sort'] . '&method=' . $_GET['method']) : false;
 
